@@ -2,6 +2,7 @@
 // +build !python
 // +build !lua
 // +build !grpc
+// +build !native
 
 package main
 

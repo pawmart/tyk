@@ -14,5 +14,10 @@ mkdir -p ../bindings/ruby
 protoc -I. --ruby_out=plugins=grpc:../bindings/ruby *.proto
 cd ../bindings/ruby ; ls -l *.rb ; cd -
 
+echo "Generating bindings for C++."
+mkdir -p ../bindings/cpp
+protoc -I. --cpp_out=../bindings/cpp *.proto
+cd ../bindings/cpp ; ls -l ; cd -
+
 echo
 echo "Done"

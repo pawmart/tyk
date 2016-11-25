@@ -22,11 +22,9 @@
 #include <google/protobuf/arena.h>
 #include <google/protobuf/arenastring.h>
 #include <google/protobuf/generated_message_util.h>
-#include <google/protobuf/metadata.h>
-#include <google/protobuf/message.h>
+#include <google/protobuf/message_lite.h>
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
-#include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
 
 namespace coprocess {
@@ -41,7 +39,7 @@ class ReturnOverrides;
 
 // ===================================================================
 
-class ReturnOverrides : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:coprocess.ReturnOverrides) */ {
+class ReturnOverrides : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:coprocess.ReturnOverrides) */ {
  public:
   ReturnOverrides();
   virtual ~ReturnOverrides();
@@ -53,11 +51,15 @@ class ReturnOverrides : public ::google::protobuf::Message /* @@protoc_insertion
     return *this;
   }
 
-  static const ::google::protobuf::Descriptor* descriptor();
+  inline ::google::protobuf::Arena* GetArena() const { return GetArenaNoVirtual(); }
+  inline void* GetMaybeArenaPointer() const {
+    return MaybeArenaPtr();
+  }
   static const ReturnOverrides& default_instance();
 
   static const ReturnOverrides* internal_default_instance();
 
+  void UnsafeArenaSwap(ReturnOverrides* other);
   void Swap(ReturnOverrides* other);
 
   // implements Message ----------------------------------------------
@@ -65,8 +67,7 @@ class ReturnOverrides : public ::google::protobuf::Message /* @@protoc_insertion
   inline ReturnOverrides* New() const { return New(NULL); }
 
   ReturnOverrides* New(::google::protobuf::Arena* arena) const;
-  void CopyFrom(const ::google::protobuf::Message& from);
-  void MergeFrom(const ::google::protobuf::Message& from);
+  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from);
   void CopyFrom(const ReturnOverrides& from);
   void MergeFrom(const ReturnOverrides& from);
   void Clear();
@@ -77,11 +78,7 @@ class ReturnOverrides : public ::google::protobuf::Message /* @@protoc_insertion
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
-      bool deterministic, ::google::protobuf::uint8* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
-    return InternalSerializeWithCachedSizesToArray(false, output);
-  }
+  void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
@@ -89,16 +86,21 @@ class ReturnOverrides : public ::google::protobuf::Message /* @@protoc_insertion
   void SetCachedSize(int size) const;
   void InternalSwap(ReturnOverrides* other);
   void UnsafeMergeFrom(const ReturnOverrides& from);
+  protected:
+  explicit ReturnOverrides(::google::protobuf::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::google::protobuf::Arena* arena);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
-    return _internal_metadata_.arena();
+    return _arena_ptr_;
   }
-  inline void* MaybeArenaPtr() const {
-    return _internal_metadata_.raw_arena_ptr();
+  inline ::google::protobuf::Arena* MaybeArenaPtr() const {
+    return _arena_ptr_;
   }
   public:
 
-  ::google::protobuf::Metadata GetMetadata() const;
+  ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
 
@@ -120,11 +122,19 @@ class ReturnOverrides : public ::google::protobuf::Message /* @@protoc_insertion
   ::std::string* mutable_response_error();
   ::std::string* release_response_error();
   void set_allocated_response_error(::std::string* response_error);
+  ::std::string* unsafe_arena_release_response_error();
+  void unsafe_arena_set_allocated_response_error(
+      ::std::string* response_error);
 
   // @@protoc_insertion_point(class_scope:coprocess.ReturnOverrides)
  private:
 
-  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr _unknown_fields_;
+  ::google::protobuf::Arena* _arena_ptr_;
+
+  friend class ::google::protobuf::Arena;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
   ::google::protobuf::internal::ArenaStringPtr response_error_;
   ::google::protobuf::int32 response_code_;
   mutable int _cached_size_;
@@ -161,37 +171,46 @@ inline void ReturnOverrides::set_response_code(::google::protobuf::int32 value) 
 
 // optional string response_error = 2;
 inline void ReturnOverrides::clear_response_error() {
-  response_error_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  response_error_.ClearToEmpty(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
 }
 inline const ::std::string& ReturnOverrides::response_error() const {
   // @@protoc_insertion_point(field_get:coprocess.ReturnOverrides.response_error)
-  return response_error_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return response_error_.Get(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void ReturnOverrides::set_response_error(const ::std::string& value) {
   
-  response_error_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  response_error_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value, GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set:coprocess.ReturnOverrides.response_error)
 }
 inline void ReturnOverrides::set_response_error(const char* value) {
   
-  response_error_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  response_error_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_char:coprocess.ReturnOverrides.response_error)
 }
-inline void ReturnOverrides::set_response_error(const char* value, size_t size) {
+inline void ReturnOverrides::set_response_error(const char* value,
+    size_t size) {
   
-  response_error_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
+  response_error_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_pointer:coprocess.ReturnOverrides.response_error)
 }
 inline ::std::string* ReturnOverrides::mutable_response_error() {
   
   // @@protoc_insertion_point(field_mutable:coprocess.ReturnOverrides.response_error)
-  return response_error_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return response_error_.Mutable(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
 }
 inline ::std::string* ReturnOverrides::release_response_error() {
   // @@protoc_insertion_point(field_release:coprocess.ReturnOverrides.response_error)
   
-  return response_error_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return response_error_.Release(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
+}
+inline ::std::string* ReturnOverrides::unsafe_arena_release_response_error() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:coprocess.ReturnOverrides.response_error)
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  
+  return response_error_.UnsafeArenaRelease(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      GetArenaNoVirtual());
 }
 inline void ReturnOverrides::set_allocated_response_error(::std::string* response_error) {
   if (response_error != NULL) {
@@ -199,8 +218,21 @@ inline void ReturnOverrides::set_allocated_response_error(::std::string* respons
   } else {
     
   }
-  response_error_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), response_error);
+  response_error_.SetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), response_error,
+      GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_allocated:coprocess.ReturnOverrides.response_error)
+}
+inline void ReturnOverrides::unsafe_arena_set_allocated_response_error(
+    ::std::string* response_error) {
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  if (response_error != NULL) {
+    
+  } else {
+    
+  }
+  response_error_.UnsafeArenaSetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      response_error, GetArenaNoVirtual());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:coprocess.ReturnOverrides.response_error)
 }
 
 inline const ReturnOverrides* ReturnOverrides::internal_default_instance() {

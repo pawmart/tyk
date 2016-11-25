@@ -22,13 +22,11 @@
 #include <google/protobuf/arena.h>
 #include <google/protobuf/arenastring.h>
 #include <google/protobuf/generated_message_util.h>
-#include <google/protobuf/metadata.h>
-#include <google/protobuf/message.h>
+#include <google/protobuf/message_lite.h>
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
 #include <google/protobuf/map.h>
-#include <google/protobuf/map_field_inl.h>
-#include <google/protobuf/unknown_field_set.h>
+#include <google/protobuf/map_field_lite.h>
 // @@protoc_insertion_point(includes)
 
 namespace coprocess {
@@ -48,7 +46,7 @@ class SessionState;
 
 // ===================================================================
 
-class AccessSpec : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:coprocess.AccessSpec) */ {
+class AccessSpec : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:coprocess.AccessSpec) */ {
  public:
   AccessSpec();
   virtual ~AccessSpec();
@@ -60,11 +58,15 @@ class AccessSpec : public ::google::protobuf::Message /* @@protoc_insertion_poin
     return *this;
   }
 
-  static const ::google::protobuf::Descriptor* descriptor();
+  inline ::google::protobuf::Arena* GetArena() const { return GetArenaNoVirtual(); }
+  inline void* GetMaybeArenaPointer() const {
+    return MaybeArenaPtr();
+  }
   static const AccessSpec& default_instance();
 
   static const AccessSpec* internal_default_instance();
 
+  void UnsafeArenaSwap(AccessSpec* other);
   void Swap(AccessSpec* other);
 
   // implements Message ----------------------------------------------
@@ -72,8 +74,7 @@ class AccessSpec : public ::google::protobuf::Message /* @@protoc_insertion_poin
   inline AccessSpec* New() const { return New(NULL); }
 
   AccessSpec* New(::google::protobuf::Arena* arena) const;
-  void CopyFrom(const ::google::protobuf::Message& from);
-  void MergeFrom(const ::google::protobuf::Message& from);
+  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from);
   void CopyFrom(const AccessSpec& from);
   void MergeFrom(const AccessSpec& from);
   void Clear();
@@ -84,11 +85,7 @@ class AccessSpec : public ::google::protobuf::Message /* @@protoc_insertion_poin
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
-      bool deterministic, ::google::protobuf::uint8* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
-    return InternalSerializeWithCachedSizesToArray(false, output);
-  }
+  void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
@@ -96,16 +93,21 @@ class AccessSpec : public ::google::protobuf::Message /* @@protoc_insertion_poin
   void SetCachedSize(int size) const;
   void InternalSwap(AccessSpec* other);
   void UnsafeMergeFrom(const AccessSpec& from);
+  protected:
+  explicit AccessSpec(::google::protobuf::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::google::protobuf::Arena* arena);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
-    return _internal_metadata_.arena();
+    return _arena_ptr_;
   }
-  inline void* MaybeArenaPtr() const {
-    return _internal_metadata_.raw_arena_ptr();
+  inline ::google::protobuf::Arena* MaybeArenaPtr() const {
+    return _arena_ptr_;
   }
   public:
 
-  ::google::protobuf::Metadata GetMetadata() const;
+  ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
 
@@ -121,6 +123,9 @@ class AccessSpec : public ::google::protobuf::Message /* @@protoc_insertion_poin
   ::std::string* mutable_url();
   ::std::string* release_url();
   void set_allocated_url(::std::string* url);
+  ::std::string* unsafe_arena_release_url();
+  void unsafe_arena_set_allocated_url(
+      ::std::string* url);
 
   // repeated string methods = 2;
   int methods_size() const;
@@ -141,7 +146,12 @@ class AccessSpec : public ::google::protobuf::Message /* @@protoc_insertion_poin
   // @@protoc_insertion_point(class_scope:coprocess.AccessSpec)
  private:
 
-  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr _unknown_fields_;
+  ::google::protobuf::Arena* _arena_ptr_;
+
+  friend class ::google::protobuf::Arena;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
   ::google::protobuf::RepeatedPtrField< ::std::string> methods_;
   ::google::protobuf::internal::ArenaStringPtr url_;
   mutable int _cached_size_;
@@ -156,7 +166,7 @@ extern ::google::protobuf::internal::ExplicitlyConstructed<AccessSpec> AccessSpe
 
 // -------------------------------------------------------------------
 
-class AccessDefinition : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:coprocess.AccessDefinition) */ {
+class AccessDefinition : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:coprocess.AccessDefinition) */ {
  public:
   AccessDefinition();
   virtual ~AccessDefinition();
@@ -168,11 +178,15 @@ class AccessDefinition : public ::google::protobuf::Message /* @@protoc_insertio
     return *this;
   }
 
-  static const ::google::protobuf::Descriptor* descriptor();
+  inline ::google::protobuf::Arena* GetArena() const { return GetArenaNoVirtual(); }
+  inline void* GetMaybeArenaPointer() const {
+    return MaybeArenaPtr();
+  }
   static const AccessDefinition& default_instance();
 
   static const AccessDefinition* internal_default_instance();
 
+  void UnsafeArenaSwap(AccessDefinition* other);
   void Swap(AccessDefinition* other);
 
   // implements Message ----------------------------------------------
@@ -180,8 +194,7 @@ class AccessDefinition : public ::google::protobuf::Message /* @@protoc_insertio
   inline AccessDefinition* New() const { return New(NULL); }
 
   AccessDefinition* New(::google::protobuf::Arena* arena) const;
-  void CopyFrom(const ::google::protobuf::Message& from);
-  void MergeFrom(const ::google::protobuf::Message& from);
+  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from);
   void CopyFrom(const AccessDefinition& from);
   void MergeFrom(const AccessDefinition& from);
   void Clear();
@@ -192,11 +205,7 @@ class AccessDefinition : public ::google::protobuf::Message /* @@protoc_insertio
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
-      bool deterministic, ::google::protobuf::uint8* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
-    return InternalSerializeWithCachedSizesToArray(false, output);
-  }
+  void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
@@ -204,16 +213,21 @@ class AccessDefinition : public ::google::protobuf::Message /* @@protoc_insertio
   void SetCachedSize(int size) const;
   void InternalSwap(AccessDefinition* other);
   void UnsafeMergeFrom(const AccessDefinition& from);
+  protected:
+  explicit AccessDefinition(::google::protobuf::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::google::protobuf::Arena* arena);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
-    return _internal_metadata_.arena();
+    return _arena_ptr_;
   }
-  inline void* MaybeArenaPtr() const {
-    return _internal_metadata_.raw_arena_ptr();
+  inline ::google::protobuf::Arena* MaybeArenaPtr() const {
+    return _arena_ptr_;
   }
   public:
 
-  ::google::protobuf::Metadata GetMetadata() const;
+  ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
 
@@ -229,6 +243,9 @@ class AccessDefinition : public ::google::protobuf::Message /* @@protoc_insertio
   ::std::string* mutable_api_name();
   ::std::string* release_api_name();
   void set_allocated_api_name(::std::string* api_name);
+  ::std::string* unsafe_arena_release_api_name();
+  void unsafe_arena_set_allocated_api_name(
+      ::std::string* api_name);
 
   // optional string api_id = 2;
   void clear_api_id();
@@ -240,6 +257,9 @@ class AccessDefinition : public ::google::protobuf::Message /* @@protoc_insertio
   ::std::string* mutable_api_id();
   ::std::string* release_api_id();
   void set_allocated_api_id(::std::string* api_id);
+  ::std::string* unsafe_arena_release_api_id();
+  void unsafe_arena_set_allocated_api_id(
+      ::std::string* api_id);
 
   // repeated string versions = 3;
   int versions_size() const;
@@ -272,7 +292,12 @@ class AccessDefinition : public ::google::protobuf::Message /* @@protoc_insertio
   // @@protoc_insertion_point(class_scope:coprocess.AccessDefinition)
  private:
 
-  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr _unknown_fields_;
+  ::google::protobuf::Arena* _arena_ptr_;
+
+  friend class ::google::protobuf::Arena;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
   ::google::protobuf::RepeatedPtrField< ::std::string> versions_;
   ::google::protobuf::RepeatedPtrField< ::coprocess::AccessSpec > allowed_urls_;
   ::google::protobuf::internal::ArenaStringPtr api_name_;
@@ -289,7 +314,7 @@ extern ::google::protobuf::internal::ExplicitlyConstructed<AccessDefinition> Acc
 
 // -------------------------------------------------------------------
 
-class BasicAuthData : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:coprocess.BasicAuthData) */ {
+class BasicAuthData : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:coprocess.BasicAuthData) */ {
  public:
   BasicAuthData();
   virtual ~BasicAuthData();
@@ -301,11 +326,15 @@ class BasicAuthData : public ::google::protobuf::Message /* @@protoc_insertion_p
     return *this;
   }
 
-  static const ::google::protobuf::Descriptor* descriptor();
+  inline ::google::protobuf::Arena* GetArena() const { return GetArenaNoVirtual(); }
+  inline void* GetMaybeArenaPointer() const {
+    return MaybeArenaPtr();
+  }
   static const BasicAuthData& default_instance();
 
   static const BasicAuthData* internal_default_instance();
 
+  void UnsafeArenaSwap(BasicAuthData* other);
   void Swap(BasicAuthData* other);
 
   // implements Message ----------------------------------------------
@@ -313,8 +342,7 @@ class BasicAuthData : public ::google::protobuf::Message /* @@protoc_insertion_p
   inline BasicAuthData* New() const { return New(NULL); }
 
   BasicAuthData* New(::google::protobuf::Arena* arena) const;
-  void CopyFrom(const ::google::protobuf::Message& from);
-  void MergeFrom(const ::google::protobuf::Message& from);
+  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from);
   void CopyFrom(const BasicAuthData& from);
   void MergeFrom(const BasicAuthData& from);
   void Clear();
@@ -325,11 +353,7 @@ class BasicAuthData : public ::google::protobuf::Message /* @@protoc_insertion_p
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
-      bool deterministic, ::google::protobuf::uint8* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
-    return InternalSerializeWithCachedSizesToArray(false, output);
-  }
+  void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
@@ -337,16 +361,21 @@ class BasicAuthData : public ::google::protobuf::Message /* @@protoc_insertion_p
   void SetCachedSize(int size) const;
   void InternalSwap(BasicAuthData* other);
   void UnsafeMergeFrom(const BasicAuthData& from);
+  protected:
+  explicit BasicAuthData(::google::protobuf::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::google::protobuf::Arena* arena);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
-    return _internal_metadata_.arena();
+    return _arena_ptr_;
   }
-  inline void* MaybeArenaPtr() const {
-    return _internal_metadata_.raw_arena_ptr();
+  inline ::google::protobuf::Arena* MaybeArenaPtr() const {
+    return _arena_ptr_;
   }
   public:
 
-  ::google::protobuf::Metadata GetMetadata() const;
+  ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
 
@@ -362,6 +391,9 @@ class BasicAuthData : public ::google::protobuf::Message /* @@protoc_insertion_p
   ::std::string* mutable_password();
   ::std::string* release_password();
   void set_allocated_password(::std::string* password);
+  ::std::string* unsafe_arena_release_password();
+  void unsafe_arena_set_allocated_password(
+      ::std::string* password);
 
   // optional string hash = 2;
   void clear_hash();
@@ -373,11 +405,19 @@ class BasicAuthData : public ::google::protobuf::Message /* @@protoc_insertion_p
   ::std::string* mutable_hash();
   ::std::string* release_hash();
   void set_allocated_hash(::std::string* hash);
+  ::std::string* unsafe_arena_release_hash();
+  void unsafe_arena_set_allocated_hash(
+      ::std::string* hash);
 
   // @@protoc_insertion_point(class_scope:coprocess.BasicAuthData)
  private:
 
-  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr _unknown_fields_;
+  ::google::protobuf::Arena* _arena_ptr_;
+
+  friend class ::google::protobuf::Arena;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
   ::google::protobuf::internal::ArenaStringPtr password_;
   ::google::protobuf::internal::ArenaStringPtr hash_;
   mutable int _cached_size_;
@@ -392,7 +432,7 @@ extern ::google::protobuf::internal::ExplicitlyConstructed<BasicAuthData> BasicA
 
 // -------------------------------------------------------------------
 
-class JWTData : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:coprocess.JWTData) */ {
+class JWTData : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:coprocess.JWTData) */ {
  public:
   JWTData();
   virtual ~JWTData();
@@ -404,11 +444,15 @@ class JWTData : public ::google::protobuf::Message /* @@protoc_insertion_point(c
     return *this;
   }
 
-  static const ::google::protobuf::Descriptor* descriptor();
+  inline ::google::protobuf::Arena* GetArena() const { return GetArenaNoVirtual(); }
+  inline void* GetMaybeArenaPointer() const {
+    return MaybeArenaPtr();
+  }
   static const JWTData& default_instance();
 
   static const JWTData* internal_default_instance();
 
+  void UnsafeArenaSwap(JWTData* other);
   void Swap(JWTData* other);
 
   // implements Message ----------------------------------------------
@@ -416,8 +460,7 @@ class JWTData : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   inline JWTData* New() const { return New(NULL); }
 
   JWTData* New(::google::protobuf::Arena* arena) const;
-  void CopyFrom(const ::google::protobuf::Message& from);
-  void MergeFrom(const ::google::protobuf::Message& from);
+  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from);
   void CopyFrom(const JWTData& from);
   void MergeFrom(const JWTData& from);
   void Clear();
@@ -428,11 +471,7 @@ class JWTData : public ::google::protobuf::Message /* @@protoc_insertion_point(c
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
-      bool deterministic, ::google::protobuf::uint8* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
-    return InternalSerializeWithCachedSizesToArray(false, output);
-  }
+  void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
@@ -440,16 +479,21 @@ class JWTData : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   void SetCachedSize(int size) const;
   void InternalSwap(JWTData* other);
   void UnsafeMergeFrom(const JWTData& from);
+  protected:
+  explicit JWTData(::google::protobuf::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::google::protobuf::Arena* arena);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
-    return _internal_metadata_.arena();
+    return _arena_ptr_;
   }
-  inline void* MaybeArenaPtr() const {
-    return _internal_metadata_.raw_arena_ptr();
+  inline ::google::protobuf::Arena* MaybeArenaPtr() const {
+    return _arena_ptr_;
   }
   public:
 
-  ::google::protobuf::Metadata GetMetadata() const;
+  ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
 
@@ -465,11 +509,19 @@ class JWTData : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   ::std::string* mutable_secret();
   ::std::string* release_secret();
   void set_allocated_secret(::std::string* secret);
+  ::std::string* unsafe_arena_release_secret();
+  void unsafe_arena_set_allocated_secret(
+      ::std::string* secret);
 
   // @@protoc_insertion_point(class_scope:coprocess.JWTData)
  private:
 
-  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr _unknown_fields_;
+  ::google::protobuf::Arena* _arena_ptr_;
+
+  friend class ::google::protobuf::Arena;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
   ::google::protobuf::internal::ArenaStringPtr secret_;
   mutable int _cached_size_;
   friend void  protobuf_InitDefaults_coprocess_5fsession_5fstate_2eproto_impl();
@@ -483,7 +535,7 @@ extern ::google::protobuf::internal::ExplicitlyConstructed<JWTData> JWTData_defa
 
 // -------------------------------------------------------------------
 
-class Monitor : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:coprocess.Monitor) */ {
+class Monitor : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:coprocess.Monitor) */ {
  public:
   Monitor();
   virtual ~Monitor();
@@ -495,11 +547,15 @@ class Monitor : public ::google::protobuf::Message /* @@protoc_insertion_point(c
     return *this;
   }
 
-  static const ::google::protobuf::Descriptor* descriptor();
+  inline ::google::protobuf::Arena* GetArena() const { return GetArenaNoVirtual(); }
+  inline void* GetMaybeArenaPointer() const {
+    return MaybeArenaPtr();
+  }
   static const Monitor& default_instance();
 
   static const Monitor* internal_default_instance();
 
+  void UnsafeArenaSwap(Monitor* other);
   void Swap(Monitor* other);
 
   // implements Message ----------------------------------------------
@@ -507,8 +563,7 @@ class Monitor : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   inline Monitor* New() const { return New(NULL); }
 
   Monitor* New(::google::protobuf::Arena* arena) const;
-  void CopyFrom(const ::google::protobuf::Message& from);
-  void MergeFrom(const ::google::protobuf::Message& from);
+  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from);
   void CopyFrom(const Monitor& from);
   void MergeFrom(const Monitor& from);
   void Clear();
@@ -519,11 +574,7 @@ class Monitor : public ::google::protobuf::Message /* @@protoc_insertion_point(c
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
-      bool deterministic, ::google::protobuf::uint8* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
-    return InternalSerializeWithCachedSizesToArray(false, output);
-  }
+  void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
@@ -531,16 +582,21 @@ class Monitor : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   void SetCachedSize(int size) const;
   void InternalSwap(Monitor* other);
   void UnsafeMergeFrom(const Monitor& from);
+  protected:
+  explicit Monitor(::google::protobuf::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::google::protobuf::Arena* arena);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
-    return _internal_metadata_.arena();
+    return _arena_ptr_;
   }
-  inline void* MaybeArenaPtr() const {
-    return _internal_metadata_.raw_arena_ptr();
+  inline ::google::protobuf::Arena* MaybeArenaPtr() const {
+    return _arena_ptr_;
   }
   public:
 
-  ::google::protobuf::Metadata GetMetadata() const;
+  ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
 
@@ -561,7 +617,12 @@ class Monitor : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   // @@protoc_insertion_point(class_scope:coprocess.Monitor)
  private:
 
-  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr _unknown_fields_;
+  ::google::protobuf::Arena* _arena_ptr_;
+
+  friend class ::google::protobuf::Arena;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
   ::google::protobuf::RepeatedField< double > trigger_limits_;
   mutable int _trigger_limits_cached_byte_size_;
   mutable int _cached_size_;
@@ -576,7 +637,7 @@ extern ::google::protobuf::internal::ExplicitlyConstructed<Monitor> Monitor_defa
 
 // -------------------------------------------------------------------
 
-class SessionState : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:coprocess.SessionState) */ {
+class SessionState : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:coprocess.SessionState) */ {
  public:
   SessionState();
   virtual ~SessionState();
@@ -588,11 +649,15 @@ class SessionState : public ::google::protobuf::Message /* @@protoc_insertion_po
     return *this;
   }
 
-  static const ::google::protobuf::Descriptor* descriptor();
+  inline ::google::protobuf::Arena* GetArena() const { return GetArenaNoVirtual(); }
+  inline void* GetMaybeArenaPointer() const {
+    return MaybeArenaPtr();
+  }
   static const SessionState& default_instance();
 
   static const SessionState* internal_default_instance();
 
+  void UnsafeArenaSwap(SessionState* other);
   void Swap(SessionState* other);
 
   // implements Message ----------------------------------------------
@@ -600,8 +665,7 @@ class SessionState : public ::google::protobuf::Message /* @@protoc_insertion_po
   inline SessionState* New() const { return New(NULL); }
 
   SessionState* New(::google::protobuf::Arena* arena) const;
-  void CopyFrom(const ::google::protobuf::Message& from);
-  void MergeFrom(const ::google::protobuf::Message& from);
+  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from);
   void CopyFrom(const SessionState& from);
   void MergeFrom(const SessionState& from);
   void Clear();
@@ -612,11 +676,7 @@ class SessionState : public ::google::protobuf::Message /* @@protoc_insertion_po
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
-      bool deterministic, ::google::protobuf::uint8* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
-    return InternalSerializeWithCachedSizesToArray(false, output);
-  }
+  void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
@@ -624,16 +684,21 @@ class SessionState : public ::google::protobuf::Message /* @@protoc_insertion_po
   void SetCachedSize(int size) const;
   void InternalSwap(SessionState* other);
   void UnsafeMergeFrom(const SessionState& from);
+  protected:
+  explicit SessionState(::google::protobuf::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::google::protobuf::Arena* arena);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
-    return _internal_metadata_.arena();
+    return _arena_ptr_;
   }
-  inline void* MaybeArenaPtr() const {
-    return _internal_metadata_.raw_arena_ptr();
+  inline ::google::protobuf::Arena* MaybeArenaPtr() const {
+    return _arena_ptr_;
   }
   public:
 
-  ::google::protobuf::Metadata GetMetadata() const;
+  ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
 
@@ -713,6 +778,9 @@ class SessionState : public ::google::protobuf::Message /* @@protoc_insertion_po
   ::std::string* mutable_org_id();
   ::std::string* release_org_id();
   void set_allocated_org_id(::std::string* org_id);
+  ::std::string* unsafe_arena_release_org_id();
+  void unsafe_arena_set_allocated_org_id(
+      ::std::string* org_id);
 
   // optional string oauth_client_id = 12;
   void clear_oauth_client_id();
@@ -724,6 +792,9 @@ class SessionState : public ::google::protobuf::Message /* @@protoc_insertion_po
   ::std::string* mutable_oauth_client_id();
   ::std::string* release_oauth_client_id();
   void set_allocated_oauth_client_id(::std::string* oauth_client_id);
+  ::std::string* unsafe_arena_release_oauth_client_id();
+  void unsafe_arena_set_allocated_oauth_client_id(
+      ::std::string* oauth_client_id);
 
   // map<string, string> oauth_keys = 13;
   int oauth_keys_size() const;
@@ -738,19 +809,37 @@ class SessionState : public ::google::protobuf::Message /* @@protoc_insertion_po
   bool has_basic_auth_data() const;
   void clear_basic_auth_data();
   static const int kBasicAuthDataFieldNumber = 14;
+  private:
+  void _slow_mutable_basic_auth_data();
+  void _slow_set_allocated_basic_auth_data(
+      ::google::protobuf::Arena* message_arena, ::coprocess::BasicAuthData** basic_auth_data);
+  ::coprocess::BasicAuthData* _slow_release_basic_auth_data();
+  public:
   const ::coprocess::BasicAuthData& basic_auth_data() const;
   ::coprocess::BasicAuthData* mutable_basic_auth_data();
   ::coprocess::BasicAuthData* release_basic_auth_data();
   void set_allocated_basic_auth_data(::coprocess::BasicAuthData* basic_auth_data);
+  ::coprocess::BasicAuthData* unsafe_arena_release_basic_auth_data();
+  void unsafe_arena_set_allocated_basic_auth_data(
+      ::coprocess::BasicAuthData* basic_auth_data);
 
   // optional .coprocess.JWTData jwt_data = 15;
   bool has_jwt_data() const;
   void clear_jwt_data();
   static const int kJwtDataFieldNumber = 15;
+  private:
+  void _slow_mutable_jwt_data();
+  void _slow_set_allocated_jwt_data(
+      ::google::protobuf::Arena* message_arena, ::coprocess::JWTData** jwt_data);
+  ::coprocess::JWTData* _slow_release_jwt_data();
+  public:
   const ::coprocess::JWTData& jwt_data() const;
   ::coprocess::JWTData* mutable_jwt_data();
   ::coprocess::JWTData* release_jwt_data();
   void set_allocated_jwt_data(::coprocess::JWTData* jwt_data);
+  ::coprocess::JWTData* unsafe_arena_release_jwt_data();
+  void unsafe_arena_set_allocated_jwt_data(
+      ::coprocess::JWTData* jwt_data);
 
   // optional bool hmac_enabled = 16;
   void clear_hmac_enabled();
@@ -768,6 +857,9 @@ class SessionState : public ::google::protobuf::Message /* @@protoc_insertion_po
   ::std::string* mutable_hmac_secret();
   ::std::string* release_hmac_secret();
   void set_allocated_hmac_secret(::std::string* hmac_secret);
+  ::std::string* unsafe_arena_release_hmac_secret();
+  void unsafe_arena_set_allocated_hmac_secret(
+      ::std::string* hmac_secret);
 
   // optional bool is_inactive = 18;
   void clear_is_inactive();
@@ -785,6 +877,9 @@ class SessionState : public ::google::protobuf::Message /* @@protoc_insertion_po
   ::std::string* mutable_apply_policy_id();
   ::std::string* release_apply_policy_id();
   void set_allocated_apply_policy_id(::std::string* apply_policy_id);
+  ::std::string* unsafe_arena_release_apply_policy_id();
+  void unsafe_arena_set_allocated_apply_policy_id(
+      ::std::string* apply_policy_id);
 
   // optional int64 data_expires = 20;
   void clear_data_expires();
@@ -796,10 +891,19 @@ class SessionState : public ::google::protobuf::Message /* @@protoc_insertion_po
   bool has_monitor() const;
   void clear_monitor();
   static const int kMonitorFieldNumber = 21;
+  private:
+  void _slow_mutable_monitor();
+  void _slow_set_allocated_monitor(
+      ::google::protobuf::Arena* message_arena, ::coprocess::Monitor** monitor);
+  ::coprocess::Monitor* _slow_release_monitor();
+  public:
   const ::coprocess::Monitor& monitor() const;
   ::coprocess::Monitor* mutable_monitor();
   ::coprocess::Monitor* release_monitor();
   void set_allocated_monitor(::coprocess::Monitor* monitor);
+  ::coprocess::Monitor* unsafe_arena_release_monitor();
+  void unsafe_arena_set_allocated_monitor(
+      ::coprocess::Monitor* monitor);
 
   // optional bool enable_detailed_recording = 22;
   void clear_enable_detailed_recording();
@@ -817,6 +921,9 @@ class SessionState : public ::google::protobuf::Message /* @@protoc_insertion_po
   ::std::string* mutable_metadata();
   ::std::string* release_metadata();
   void set_allocated_metadata(::std::string* metadata);
+  ::std::string* unsafe_arena_release_metadata();
+  void unsafe_arena_set_allocated_metadata(
+      ::std::string* metadata);
 
   // repeated string tags = 24;
   int tags_size() const;
@@ -844,6 +951,9 @@ class SessionState : public ::google::protobuf::Message /* @@protoc_insertion_po
   ::std::string* mutable_alias();
   ::std::string* release_alias();
   void set_allocated_alias(::std::string* alias);
+  ::std::string* unsafe_arena_release_alias();
+  void unsafe_arena_set_allocated_alias(
+      ::std::string* alias);
 
   // optional string last_updated = 26;
   void clear_last_updated();
@@ -855,6 +965,9 @@ class SessionState : public ::google::protobuf::Message /* @@protoc_insertion_po
   ::std::string* mutable_last_updated();
   ::std::string* release_last_updated();
   void set_allocated_last_updated(::std::string* last_updated);
+  ::std::string* unsafe_arena_release_last_updated();
+  void unsafe_arena_set_allocated_last_updated(
+      ::std::string* last_updated);
 
   // optional int64 id_extractor_deadline = 27;
   void clear_id_extractor_deadline();
@@ -871,14 +984,19 @@ class SessionState : public ::google::protobuf::Message /* @@protoc_insertion_po
   // @@protoc_insertion_point(class_scope:coprocess.SessionState)
  private:
 
-  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr _unknown_fields_;
+  ::google::protobuf::Arena* _arena_ptr_;
+
+  friend class ::google::protobuf::Arena;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
   typedef ::google::protobuf::internal::MapEntryLite<
       ::std::string, ::coprocess::AccessDefinition,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
       ::google::protobuf::internal::WireFormatLite::TYPE_MESSAGE,
       0 >
       SessionState_AccessRightsEntry;
-  ::google::protobuf::internal::MapField<
+  ::google::protobuf::internal::MapFieldLite<
       ::std::string, ::coprocess::AccessDefinition,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
       ::google::protobuf::internal::WireFormatLite::TYPE_MESSAGE,
@@ -889,7 +1007,7 @@ class SessionState : public ::google::protobuf::Message /* @@protoc_insertion_po
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
       0 >
       SessionState_OauthKeysEntry;
-  ::google::protobuf::internal::MapField<
+  ::google::protobuf::internal::MapFieldLite<
       ::std::string, ::std::string,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
@@ -940,37 +1058,46 @@ extern ::google::protobuf::internal::ExplicitlyConstructed<SessionState> Session
 
 // optional string url = 1;
 inline void AccessSpec::clear_url() {
-  url_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  url_.ClearToEmpty(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
 }
 inline const ::std::string& AccessSpec::url() const {
   // @@protoc_insertion_point(field_get:coprocess.AccessSpec.url)
-  return url_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return url_.Get(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void AccessSpec::set_url(const ::std::string& value) {
   
-  url_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  url_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value, GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set:coprocess.AccessSpec.url)
 }
 inline void AccessSpec::set_url(const char* value) {
   
-  url_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  url_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_char:coprocess.AccessSpec.url)
 }
-inline void AccessSpec::set_url(const char* value, size_t size) {
+inline void AccessSpec::set_url(const char* value,
+    size_t size) {
   
-  url_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
+  url_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_pointer:coprocess.AccessSpec.url)
 }
 inline ::std::string* AccessSpec::mutable_url() {
   
   // @@protoc_insertion_point(field_mutable:coprocess.AccessSpec.url)
-  return url_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return url_.Mutable(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
 }
 inline ::std::string* AccessSpec::release_url() {
   // @@protoc_insertion_point(field_release:coprocess.AccessSpec.url)
   
-  return url_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return url_.Release(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
+}
+inline ::std::string* AccessSpec::unsafe_arena_release_url() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:coprocess.AccessSpec.url)
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  
+  return url_.UnsafeArenaRelease(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      GetArenaNoVirtual());
 }
 inline void AccessSpec::set_allocated_url(::std::string* url) {
   if (url != NULL) {
@@ -978,8 +1105,21 @@ inline void AccessSpec::set_allocated_url(::std::string* url) {
   } else {
     
   }
-  url_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), url);
+  url_.SetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), url,
+      GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_allocated:coprocess.AccessSpec.url)
+}
+inline void AccessSpec::unsafe_arena_set_allocated_url(
+    ::std::string* url) {
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  if (url != NULL) {
+    
+  } else {
+    
+  }
+  url_.UnsafeArenaSetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      url, GetArenaNoVirtual());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:coprocess.AccessSpec.url)
 }
 
 // repeated string methods = 2;
@@ -1046,37 +1186,46 @@ inline const AccessSpec* AccessSpec::internal_default_instance() {
 
 // optional string api_name = 1;
 inline void AccessDefinition::clear_api_name() {
-  api_name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  api_name_.ClearToEmpty(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
 }
 inline const ::std::string& AccessDefinition::api_name() const {
   // @@protoc_insertion_point(field_get:coprocess.AccessDefinition.api_name)
-  return api_name_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return api_name_.Get(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void AccessDefinition::set_api_name(const ::std::string& value) {
   
-  api_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  api_name_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value, GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set:coprocess.AccessDefinition.api_name)
 }
 inline void AccessDefinition::set_api_name(const char* value) {
   
-  api_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  api_name_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_char:coprocess.AccessDefinition.api_name)
 }
-inline void AccessDefinition::set_api_name(const char* value, size_t size) {
+inline void AccessDefinition::set_api_name(const char* value,
+    size_t size) {
   
-  api_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
+  api_name_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_pointer:coprocess.AccessDefinition.api_name)
 }
 inline ::std::string* AccessDefinition::mutable_api_name() {
   
   // @@protoc_insertion_point(field_mutable:coprocess.AccessDefinition.api_name)
-  return api_name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return api_name_.Mutable(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
 }
 inline ::std::string* AccessDefinition::release_api_name() {
   // @@protoc_insertion_point(field_release:coprocess.AccessDefinition.api_name)
   
-  return api_name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return api_name_.Release(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
+}
+inline ::std::string* AccessDefinition::unsafe_arena_release_api_name() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:coprocess.AccessDefinition.api_name)
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  
+  return api_name_.UnsafeArenaRelease(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      GetArenaNoVirtual());
 }
 inline void AccessDefinition::set_allocated_api_name(::std::string* api_name) {
   if (api_name != NULL) {
@@ -1084,43 +1233,65 @@ inline void AccessDefinition::set_allocated_api_name(::std::string* api_name) {
   } else {
     
   }
-  api_name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), api_name);
+  api_name_.SetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), api_name,
+      GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_allocated:coprocess.AccessDefinition.api_name)
+}
+inline void AccessDefinition::unsafe_arena_set_allocated_api_name(
+    ::std::string* api_name) {
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  if (api_name != NULL) {
+    
+  } else {
+    
+  }
+  api_name_.UnsafeArenaSetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      api_name, GetArenaNoVirtual());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:coprocess.AccessDefinition.api_name)
 }
 
 // optional string api_id = 2;
 inline void AccessDefinition::clear_api_id() {
-  api_id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  api_id_.ClearToEmpty(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
 }
 inline const ::std::string& AccessDefinition::api_id() const {
   // @@protoc_insertion_point(field_get:coprocess.AccessDefinition.api_id)
-  return api_id_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return api_id_.Get(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void AccessDefinition::set_api_id(const ::std::string& value) {
   
-  api_id_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  api_id_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value, GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set:coprocess.AccessDefinition.api_id)
 }
 inline void AccessDefinition::set_api_id(const char* value) {
   
-  api_id_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  api_id_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_char:coprocess.AccessDefinition.api_id)
 }
-inline void AccessDefinition::set_api_id(const char* value, size_t size) {
+inline void AccessDefinition::set_api_id(const char* value,
+    size_t size) {
   
-  api_id_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
+  api_id_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_pointer:coprocess.AccessDefinition.api_id)
 }
 inline ::std::string* AccessDefinition::mutable_api_id() {
   
   // @@protoc_insertion_point(field_mutable:coprocess.AccessDefinition.api_id)
-  return api_id_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return api_id_.Mutable(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
 }
 inline ::std::string* AccessDefinition::release_api_id() {
   // @@protoc_insertion_point(field_release:coprocess.AccessDefinition.api_id)
   
-  return api_id_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return api_id_.Release(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
+}
+inline ::std::string* AccessDefinition::unsafe_arena_release_api_id() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:coprocess.AccessDefinition.api_id)
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  
+  return api_id_.UnsafeArenaRelease(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      GetArenaNoVirtual());
 }
 inline void AccessDefinition::set_allocated_api_id(::std::string* api_id) {
   if (api_id != NULL) {
@@ -1128,8 +1299,21 @@ inline void AccessDefinition::set_allocated_api_id(::std::string* api_id) {
   } else {
     
   }
-  api_id_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), api_id);
+  api_id_.SetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), api_id,
+      GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_allocated:coprocess.AccessDefinition.api_id)
+}
+inline void AccessDefinition::unsafe_arena_set_allocated_api_id(
+    ::std::string* api_id) {
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  if (api_id != NULL) {
+    
+  } else {
+    
+  }
+  api_id_.UnsafeArenaSetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      api_id, GetArenaNoVirtual());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:coprocess.AccessDefinition.api_id)
 }
 
 // repeated string versions = 3;
@@ -1226,37 +1410,46 @@ inline const AccessDefinition* AccessDefinition::internal_default_instance() {
 
 // optional string password = 1;
 inline void BasicAuthData::clear_password() {
-  password_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  password_.ClearToEmpty(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
 }
 inline const ::std::string& BasicAuthData::password() const {
   // @@protoc_insertion_point(field_get:coprocess.BasicAuthData.password)
-  return password_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return password_.Get(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void BasicAuthData::set_password(const ::std::string& value) {
   
-  password_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  password_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value, GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set:coprocess.BasicAuthData.password)
 }
 inline void BasicAuthData::set_password(const char* value) {
   
-  password_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  password_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_char:coprocess.BasicAuthData.password)
 }
-inline void BasicAuthData::set_password(const char* value, size_t size) {
+inline void BasicAuthData::set_password(const char* value,
+    size_t size) {
   
-  password_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
+  password_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_pointer:coprocess.BasicAuthData.password)
 }
 inline ::std::string* BasicAuthData::mutable_password() {
   
   // @@protoc_insertion_point(field_mutable:coprocess.BasicAuthData.password)
-  return password_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return password_.Mutable(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
 }
 inline ::std::string* BasicAuthData::release_password() {
   // @@protoc_insertion_point(field_release:coprocess.BasicAuthData.password)
   
-  return password_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return password_.Release(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
+}
+inline ::std::string* BasicAuthData::unsafe_arena_release_password() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:coprocess.BasicAuthData.password)
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  
+  return password_.UnsafeArenaRelease(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      GetArenaNoVirtual());
 }
 inline void BasicAuthData::set_allocated_password(::std::string* password) {
   if (password != NULL) {
@@ -1264,43 +1457,65 @@ inline void BasicAuthData::set_allocated_password(::std::string* password) {
   } else {
     
   }
-  password_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), password);
+  password_.SetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), password,
+      GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_allocated:coprocess.BasicAuthData.password)
+}
+inline void BasicAuthData::unsafe_arena_set_allocated_password(
+    ::std::string* password) {
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  if (password != NULL) {
+    
+  } else {
+    
+  }
+  password_.UnsafeArenaSetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      password, GetArenaNoVirtual());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:coprocess.BasicAuthData.password)
 }
 
 // optional string hash = 2;
 inline void BasicAuthData::clear_hash() {
-  hash_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  hash_.ClearToEmpty(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
 }
 inline const ::std::string& BasicAuthData::hash() const {
   // @@protoc_insertion_point(field_get:coprocess.BasicAuthData.hash)
-  return hash_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return hash_.Get(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void BasicAuthData::set_hash(const ::std::string& value) {
   
-  hash_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  hash_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value, GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set:coprocess.BasicAuthData.hash)
 }
 inline void BasicAuthData::set_hash(const char* value) {
   
-  hash_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  hash_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_char:coprocess.BasicAuthData.hash)
 }
-inline void BasicAuthData::set_hash(const char* value, size_t size) {
+inline void BasicAuthData::set_hash(const char* value,
+    size_t size) {
   
-  hash_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
+  hash_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_pointer:coprocess.BasicAuthData.hash)
 }
 inline ::std::string* BasicAuthData::mutable_hash() {
   
   // @@protoc_insertion_point(field_mutable:coprocess.BasicAuthData.hash)
-  return hash_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return hash_.Mutable(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
 }
 inline ::std::string* BasicAuthData::release_hash() {
   // @@protoc_insertion_point(field_release:coprocess.BasicAuthData.hash)
   
-  return hash_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return hash_.Release(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
+}
+inline ::std::string* BasicAuthData::unsafe_arena_release_hash() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:coprocess.BasicAuthData.hash)
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  
+  return hash_.UnsafeArenaRelease(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      GetArenaNoVirtual());
 }
 inline void BasicAuthData::set_allocated_hash(::std::string* hash) {
   if (hash != NULL) {
@@ -1308,8 +1523,21 @@ inline void BasicAuthData::set_allocated_hash(::std::string* hash) {
   } else {
     
   }
-  hash_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), hash);
+  hash_.SetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), hash,
+      GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_allocated:coprocess.BasicAuthData.hash)
+}
+inline void BasicAuthData::unsafe_arena_set_allocated_hash(
+    ::std::string* hash) {
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  if (hash != NULL) {
+    
+  } else {
+    
+  }
+  hash_.UnsafeArenaSetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      hash, GetArenaNoVirtual());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:coprocess.BasicAuthData.hash)
 }
 
 inline const BasicAuthData* BasicAuthData::internal_default_instance() {
@@ -1321,37 +1549,46 @@ inline const BasicAuthData* BasicAuthData::internal_default_instance() {
 
 // optional string secret = 1;
 inline void JWTData::clear_secret() {
-  secret_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  secret_.ClearToEmpty(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
 }
 inline const ::std::string& JWTData::secret() const {
   // @@protoc_insertion_point(field_get:coprocess.JWTData.secret)
-  return secret_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return secret_.Get(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void JWTData::set_secret(const ::std::string& value) {
   
-  secret_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  secret_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value, GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set:coprocess.JWTData.secret)
 }
 inline void JWTData::set_secret(const char* value) {
   
-  secret_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  secret_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_char:coprocess.JWTData.secret)
 }
-inline void JWTData::set_secret(const char* value, size_t size) {
+inline void JWTData::set_secret(const char* value,
+    size_t size) {
   
-  secret_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
+  secret_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_pointer:coprocess.JWTData.secret)
 }
 inline ::std::string* JWTData::mutable_secret() {
   
   // @@protoc_insertion_point(field_mutable:coprocess.JWTData.secret)
-  return secret_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return secret_.Mutable(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
 }
 inline ::std::string* JWTData::release_secret() {
   // @@protoc_insertion_point(field_release:coprocess.JWTData.secret)
   
-  return secret_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return secret_.Release(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
+}
+inline ::std::string* JWTData::unsafe_arena_release_secret() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:coprocess.JWTData.secret)
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  
+  return secret_.UnsafeArenaRelease(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      GetArenaNoVirtual());
 }
 inline void JWTData::set_allocated_secret(::std::string* secret) {
   if (secret != NULL) {
@@ -1359,8 +1596,21 @@ inline void JWTData::set_allocated_secret(::std::string* secret) {
   } else {
     
   }
-  secret_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), secret);
+  secret_.SetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), secret,
+      GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_allocated:coprocess.JWTData.secret)
+}
+inline void JWTData::unsafe_arena_set_allocated_secret(
+    ::std::string* secret) {
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  if (secret != NULL) {
+    
+  } else {
+    
+  }
+  secret_.UnsafeArenaSetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      secret, GetArenaNoVirtual());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:coprocess.JWTData.secret)
 }
 
 inline const JWTData* JWTData::internal_default_instance() {
@@ -1553,37 +1803,46 @@ SessionState::mutable_access_rights() {
 
 // optional string org_id = 11;
 inline void SessionState::clear_org_id() {
-  org_id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  org_id_.ClearToEmpty(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
 }
 inline const ::std::string& SessionState::org_id() const {
   // @@protoc_insertion_point(field_get:coprocess.SessionState.org_id)
-  return org_id_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return org_id_.Get(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void SessionState::set_org_id(const ::std::string& value) {
   
-  org_id_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  org_id_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value, GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set:coprocess.SessionState.org_id)
 }
 inline void SessionState::set_org_id(const char* value) {
   
-  org_id_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  org_id_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_char:coprocess.SessionState.org_id)
 }
-inline void SessionState::set_org_id(const char* value, size_t size) {
+inline void SessionState::set_org_id(const char* value,
+    size_t size) {
   
-  org_id_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
+  org_id_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_pointer:coprocess.SessionState.org_id)
 }
 inline ::std::string* SessionState::mutable_org_id() {
   
   // @@protoc_insertion_point(field_mutable:coprocess.SessionState.org_id)
-  return org_id_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return org_id_.Mutable(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
 }
 inline ::std::string* SessionState::release_org_id() {
   // @@protoc_insertion_point(field_release:coprocess.SessionState.org_id)
   
-  return org_id_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return org_id_.Release(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
+}
+inline ::std::string* SessionState::unsafe_arena_release_org_id() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:coprocess.SessionState.org_id)
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  
+  return org_id_.UnsafeArenaRelease(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      GetArenaNoVirtual());
 }
 inline void SessionState::set_allocated_org_id(::std::string* org_id) {
   if (org_id != NULL) {
@@ -1591,43 +1850,65 @@ inline void SessionState::set_allocated_org_id(::std::string* org_id) {
   } else {
     
   }
-  org_id_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), org_id);
+  org_id_.SetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), org_id,
+      GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_allocated:coprocess.SessionState.org_id)
+}
+inline void SessionState::unsafe_arena_set_allocated_org_id(
+    ::std::string* org_id) {
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  if (org_id != NULL) {
+    
+  } else {
+    
+  }
+  org_id_.UnsafeArenaSetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      org_id, GetArenaNoVirtual());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:coprocess.SessionState.org_id)
 }
 
 // optional string oauth_client_id = 12;
 inline void SessionState::clear_oauth_client_id() {
-  oauth_client_id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  oauth_client_id_.ClearToEmpty(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
 }
 inline const ::std::string& SessionState::oauth_client_id() const {
   // @@protoc_insertion_point(field_get:coprocess.SessionState.oauth_client_id)
-  return oauth_client_id_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return oauth_client_id_.Get(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void SessionState::set_oauth_client_id(const ::std::string& value) {
   
-  oauth_client_id_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  oauth_client_id_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value, GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set:coprocess.SessionState.oauth_client_id)
 }
 inline void SessionState::set_oauth_client_id(const char* value) {
   
-  oauth_client_id_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  oauth_client_id_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_char:coprocess.SessionState.oauth_client_id)
 }
-inline void SessionState::set_oauth_client_id(const char* value, size_t size) {
+inline void SessionState::set_oauth_client_id(const char* value,
+    size_t size) {
   
-  oauth_client_id_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
+  oauth_client_id_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_pointer:coprocess.SessionState.oauth_client_id)
 }
 inline ::std::string* SessionState::mutable_oauth_client_id() {
   
   // @@protoc_insertion_point(field_mutable:coprocess.SessionState.oauth_client_id)
-  return oauth_client_id_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return oauth_client_id_.Mutable(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
 }
 inline ::std::string* SessionState::release_oauth_client_id() {
   // @@protoc_insertion_point(field_release:coprocess.SessionState.oauth_client_id)
   
-  return oauth_client_id_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return oauth_client_id_.Release(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
+}
+inline ::std::string* SessionState::unsafe_arena_release_oauth_client_id() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:coprocess.SessionState.oauth_client_id)
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  
+  return oauth_client_id_.UnsafeArenaRelease(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      GetArenaNoVirtual());
 }
 inline void SessionState::set_allocated_oauth_client_id(::std::string* oauth_client_id) {
   if (oauth_client_id != NULL) {
@@ -1635,8 +1916,21 @@ inline void SessionState::set_allocated_oauth_client_id(::std::string* oauth_cli
   } else {
     
   }
-  oauth_client_id_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), oauth_client_id);
+  oauth_client_id_.SetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), oauth_client_id,
+      GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_allocated:coprocess.SessionState.oauth_client_id)
+}
+inline void SessionState::unsafe_arena_set_allocated_oauth_client_id(
+    ::std::string* oauth_client_id) {
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  if (oauth_client_id != NULL) {
+    
+  } else {
+    
+  }
+  oauth_client_id_.UnsafeArenaSetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      oauth_client_id, GetArenaNoVirtual());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:coprocess.SessionState.oauth_client_id)
 }
 
 // map<string, string> oauth_keys = 13;
@@ -1673,7 +1967,7 @@ inline const ::coprocess::BasicAuthData& SessionState::basic_auth_data() const {
 inline ::coprocess::BasicAuthData* SessionState::mutable_basic_auth_data() {
   
   if (basic_auth_data_ == NULL) {
-    basic_auth_data_ = new ::coprocess::BasicAuthData;
+    _slow_mutable_basic_auth_data();
   }
   // @@protoc_insertion_point(field_mutable:coprocess.SessionState.basic_auth_data)
   return basic_auth_data_;
@@ -1681,12 +1975,22 @@ inline ::coprocess::BasicAuthData* SessionState::mutable_basic_auth_data() {
 inline ::coprocess::BasicAuthData* SessionState::release_basic_auth_data() {
   // @@protoc_insertion_point(field_release:coprocess.SessionState.basic_auth_data)
   
-  ::coprocess::BasicAuthData* temp = basic_auth_data_;
-  basic_auth_data_ = NULL;
-  return temp;
+  if (GetArenaNoVirtual() != NULL) {
+    return _slow_release_basic_auth_data();
+  } else {
+    ::coprocess::BasicAuthData* temp = basic_auth_data_;
+    basic_auth_data_ = NULL;
+    return temp;
+  }
 }
-inline void SessionState::set_allocated_basic_auth_data(::coprocess::BasicAuthData* basic_auth_data) {
-  delete basic_auth_data_;
+inline  void SessionState::set_allocated_basic_auth_data(::coprocess::BasicAuthData* basic_auth_data) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
+    delete basic_auth_data_;
+  }
+  if (basic_auth_data != NULL) {
+    _slow_set_allocated_basic_auth_data(message_arena, &basic_auth_data);
+  }
   basic_auth_data_ = basic_auth_data;
   if (basic_auth_data) {
     
@@ -1712,7 +2016,7 @@ inline const ::coprocess::JWTData& SessionState::jwt_data() const {
 inline ::coprocess::JWTData* SessionState::mutable_jwt_data() {
   
   if (jwt_data_ == NULL) {
-    jwt_data_ = new ::coprocess::JWTData;
+    _slow_mutable_jwt_data();
   }
   // @@protoc_insertion_point(field_mutable:coprocess.SessionState.jwt_data)
   return jwt_data_;
@@ -1720,12 +2024,22 @@ inline ::coprocess::JWTData* SessionState::mutable_jwt_data() {
 inline ::coprocess::JWTData* SessionState::release_jwt_data() {
   // @@protoc_insertion_point(field_release:coprocess.SessionState.jwt_data)
   
-  ::coprocess::JWTData* temp = jwt_data_;
-  jwt_data_ = NULL;
-  return temp;
+  if (GetArenaNoVirtual() != NULL) {
+    return _slow_release_jwt_data();
+  } else {
+    ::coprocess::JWTData* temp = jwt_data_;
+    jwt_data_ = NULL;
+    return temp;
+  }
 }
-inline void SessionState::set_allocated_jwt_data(::coprocess::JWTData* jwt_data) {
-  delete jwt_data_;
+inline  void SessionState::set_allocated_jwt_data(::coprocess::JWTData* jwt_data) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
+    delete jwt_data_;
+  }
+  if (jwt_data != NULL) {
+    _slow_set_allocated_jwt_data(message_arena, &jwt_data);
+  }
   jwt_data_ = jwt_data;
   if (jwt_data) {
     
@@ -1751,37 +2065,46 @@ inline void SessionState::set_hmac_enabled(bool value) {
 
 // optional string hmac_secret = 17;
 inline void SessionState::clear_hmac_secret() {
-  hmac_secret_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  hmac_secret_.ClearToEmpty(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
 }
 inline const ::std::string& SessionState::hmac_secret() const {
   // @@protoc_insertion_point(field_get:coprocess.SessionState.hmac_secret)
-  return hmac_secret_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return hmac_secret_.Get(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void SessionState::set_hmac_secret(const ::std::string& value) {
   
-  hmac_secret_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  hmac_secret_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value, GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set:coprocess.SessionState.hmac_secret)
 }
 inline void SessionState::set_hmac_secret(const char* value) {
   
-  hmac_secret_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  hmac_secret_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_char:coprocess.SessionState.hmac_secret)
 }
-inline void SessionState::set_hmac_secret(const char* value, size_t size) {
+inline void SessionState::set_hmac_secret(const char* value,
+    size_t size) {
   
-  hmac_secret_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
+  hmac_secret_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_pointer:coprocess.SessionState.hmac_secret)
 }
 inline ::std::string* SessionState::mutable_hmac_secret() {
   
   // @@protoc_insertion_point(field_mutable:coprocess.SessionState.hmac_secret)
-  return hmac_secret_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return hmac_secret_.Mutable(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
 }
 inline ::std::string* SessionState::release_hmac_secret() {
   // @@protoc_insertion_point(field_release:coprocess.SessionState.hmac_secret)
   
-  return hmac_secret_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return hmac_secret_.Release(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
+}
+inline ::std::string* SessionState::unsafe_arena_release_hmac_secret() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:coprocess.SessionState.hmac_secret)
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  
+  return hmac_secret_.UnsafeArenaRelease(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      GetArenaNoVirtual());
 }
 inline void SessionState::set_allocated_hmac_secret(::std::string* hmac_secret) {
   if (hmac_secret != NULL) {
@@ -1789,8 +2112,21 @@ inline void SessionState::set_allocated_hmac_secret(::std::string* hmac_secret) 
   } else {
     
   }
-  hmac_secret_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), hmac_secret);
+  hmac_secret_.SetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), hmac_secret,
+      GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_allocated:coprocess.SessionState.hmac_secret)
+}
+inline void SessionState::unsafe_arena_set_allocated_hmac_secret(
+    ::std::string* hmac_secret) {
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  if (hmac_secret != NULL) {
+    
+  } else {
+    
+  }
+  hmac_secret_.UnsafeArenaSetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      hmac_secret, GetArenaNoVirtual());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:coprocess.SessionState.hmac_secret)
 }
 
 // optional bool is_inactive = 18;
@@ -1809,37 +2145,46 @@ inline void SessionState::set_is_inactive(bool value) {
 
 // optional string apply_policy_id = 19;
 inline void SessionState::clear_apply_policy_id() {
-  apply_policy_id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  apply_policy_id_.ClearToEmpty(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
 }
 inline const ::std::string& SessionState::apply_policy_id() const {
   // @@protoc_insertion_point(field_get:coprocess.SessionState.apply_policy_id)
-  return apply_policy_id_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return apply_policy_id_.Get(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void SessionState::set_apply_policy_id(const ::std::string& value) {
   
-  apply_policy_id_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  apply_policy_id_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value, GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set:coprocess.SessionState.apply_policy_id)
 }
 inline void SessionState::set_apply_policy_id(const char* value) {
   
-  apply_policy_id_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  apply_policy_id_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_char:coprocess.SessionState.apply_policy_id)
 }
-inline void SessionState::set_apply_policy_id(const char* value, size_t size) {
+inline void SessionState::set_apply_policy_id(const char* value,
+    size_t size) {
   
-  apply_policy_id_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
+  apply_policy_id_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_pointer:coprocess.SessionState.apply_policy_id)
 }
 inline ::std::string* SessionState::mutable_apply_policy_id() {
   
   // @@protoc_insertion_point(field_mutable:coprocess.SessionState.apply_policy_id)
-  return apply_policy_id_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return apply_policy_id_.Mutable(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
 }
 inline ::std::string* SessionState::release_apply_policy_id() {
   // @@protoc_insertion_point(field_release:coprocess.SessionState.apply_policy_id)
   
-  return apply_policy_id_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return apply_policy_id_.Release(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
+}
+inline ::std::string* SessionState::unsafe_arena_release_apply_policy_id() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:coprocess.SessionState.apply_policy_id)
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  
+  return apply_policy_id_.UnsafeArenaRelease(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      GetArenaNoVirtual());
 }
 inline void SessionState::set_allocated_apply_policy_id(::std::string* apply_policy_id) {
   if (apply_policy_id != NULL) {
@@ -1847,8 +2192,21 @@ inline void SessionState::set_allocated_apply_policy_id(::std::string* apply_pol
   } else {
     
   }
-  apply_policy_id_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), apply_policy_id);
+  apply_policy_id_.SetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), apply_policy_id,
+      GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_allocated:coprocess.SessionState.apply_policy_id)
+}
+inline void SessionState::unsafe_arena_set_allocated_apply_policy_id(
+    ::std::string* apply_policy_id) {
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  if (apply_policy_id != NULL) {
+    
+  } else {
+    
+  }
+  apply_policy_id_.UnsafeArenaSetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      apply_policy_id, GetArenaNoVirtual());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:coprocess.SessionState.apply_policy_id)
 }
 
 // optional int64 data_expires = 20;
@@ -1881,7 +2239,7 @@ inline const ::coprocess::Monitor& SessionState::monitor() const {
 inline ::coprocess::Monitor* SessionState::mutable_monitor() {
   
   if (monitor_ == NULL) {
-    monitor_ = new ::coprocess::Monitor;
+    _slow_mutable_monitor();
   }
   // @@protoc_insertion_point(field_mutable:coprocess.SessionState.monitor)
   return monitor_;
@@ -1889,12 +2247,22 @@ inline ::coprocess::Monitor* SessionState::mutable_monitor() {
 inline ::coprocess::Monitor* SessionState::release_monitor() {
   // @@protoc_insertion_point(field_release:coprocess.SessionState.monitor)
   
-  ::coprocess::Monitor* temp = monitor_;
-  monitor_ = NULL;
-  return temp;
+  if (GetArenaNoVirtual() != NULL) {
+    return _slow_release_monitor();
+  } else {
+    ::coprocess::Monitor* temp = monitor_;
+    monitor_ = NULL;
+    return temp;
+  }
 }
-inline void SessionState::set_allocated_monitor(::coprocess::Monitor* monitor) {
-  delete monitor_;
+inline  void SessionState::set_allocated_monitor(::coprocess::Monitor* monitor) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
+    delete monitor_;
+  }
+  if (monitor != NULL) {
+    _slow_set_allocated_monitor(message_arena, &monitor);
+  }
   monitor_ = monitor;
   if (monitor) {
     
@@ -1920,37 +2288,46 @@ inline void SessionState::set_enable_detailed_recording(bool value) {
 
 // optional string metadata = 23;
 inline void SessionState::clear_metadata() {
-  metadata_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  metadata_.ClearToEmpty(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
 }
 inline const ::std::string& SessionState::metadata() const {
   // @@protoc_insertion_point(field_get:coprocess.SessionState.metadata)
-  return metadata_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return metadata_.Get(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void SessionState::set_metadata(const ::std::string& value) {
   
-  metadata_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  metadata_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value, GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set:coprocess.SessionState.metadata)
 }
 inline void SessionState::set_metadata(const char* value) {
   
-  metadata_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  metadata_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_char:coprocess.SessionState.metadata)
 }
-inline void SessionState::set_metadata(const char* value, size_t size) {
+inline void SessionState::set_metadata(const char* value,
+    size_t size) {
   
-  metadata_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
+  metadata_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_pointer:coprocess.SessionState.metadata)
 }
 inline ::std::string* SessionState::mutable_metadata() {
   
   // @@protoc_insertion_point(field_mutable:coprocess.SessionState.metadata)
-  return metadata_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return metadata_.Mutable(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
 }
 inline ::std::string* SessionState::release_metadata() {
   // @@protoc_insertion_point(field_release:coprocess.SessionState.metadata)
   
-  return metadata_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return metadata_.Release(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
+}
+inline ::std::string* SessionState::unsafe_arena_release_metadata() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:coprocess.SessionState.metadata)
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  
+  return metadata_.UnsafeArenaRelease(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      GetArenaNoVirtual());
 }
 inline void SessionState::set_allocated_metadata(::std::string* metadata) {
   if (metadata != NULL) {
@@ -1958,8 +2335,21 @@ inline void SessionState::set_allocated_metadata(::std::string* metadata) {
   } else {
     
   }
-  metadata_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), metadata);
+  metadata_.SetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), metadata,
+      GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_allocated:coprocess.SessionState.metadata)
+}
+inline void SessionState::unsafe_arena_set_allocated_metadata(
+    ::std::string* metadata) {
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  if (metadata != NULL) {
+    
+  } else {
+    
+  }
+  metadata_.UnsafeArenaSetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      metadata, GetArenaNoVirtual());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:coprocess.SessionState.metadata)
 }
 
 // repeated string tags = 24;
@@ -2019,37 +2409,46 @@ SessionState::mutable_tags() {
 
 // optional string alias = 25;
 inline void SessionState::clear_alias() {
-  alias_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  alias_.ClearToEmpty(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
 }
 inline const ::std::string& SessionState::alias() const {
   // @@protoc_insertion_point(field_get:coprocess.SessionState.alias)
-  return alias_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return alias_.Get(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void SessionState::set_alias(const ::std::string& value) {
   
-  alias_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  alias_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value, GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set:coprocess.SessionState.alias)
 }
 inline void SessionState::set_alias(const char* value) {
   
-  alias_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  alias_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_char:coprocess.SessionState.alias)
 }
-inline void SessionState::set_alias(const char* value, size_t size) {
+inline void SessionState::set_alias(const char* value,
+    size_t size) {
   
-  alias_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
+  alias_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_pointer:coprocess.SessionState.alias)
 }
 inline ::std::string* SessionState::mutable_alias() {
   
   // @@protoc_insertion_point(field_mutable:coprocess.SessionState.alias)
-  return alias_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return alias_.Mutable(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
 }
 inline ::std::string* SessionState::release_alias() {
   // @@protoc_insertion_point(field_release:coprocess.SessionState.alias)
   
-  return alias_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return alias_.Release(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
+}
+inline ::std::string* SessionState::unsafe_arena_release_alias() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:coprocess.SessionState.alias)
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  
+  return alias_.UnsafeArenaRelease(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      GetArenaNoVirtual());
 }
 inline void SessionState::set_allocated_alias(::std::string* alias) {
   if (alias != NULL) {
@@ -2057,43 +2456,65 @@ inline void SessionState::set_allocated_alias(::std::string* alias) {
   } else {
     
   }
-  alias_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), alias);
+  alias_.SetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), alias,
+      GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_allocated:coprocess.SessionState.alias)
+}
+inline void SessionState::unsafe_arena_set_allocated_alias(
+    ::std::string* alias) {
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  if (alias != NULL) {
+    
+  } else {
+    
+  }
+  alias_.UnsafeArenaSetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      alias, GetArenaNoVirtual());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:coprocess.SessionState.alias)
 }
 
 // optional string last_updated = 26;
 inline void SessionState::clear_last_updated() {
-  last_updated_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  last_updated_.ClearToEmpty(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
 }
 inline const ::std::string& SessionState::last_updated() const {
   // @@protoc_insertion_point(field_get:coprocess.SessionState.last_updated)
-  return last_updated_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return last_updated_.Get(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void SessionState::set_last_updated(const ::std::string& value) {
   
-  last_updated_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  last_updated_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value, GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set:coprocess.SessionState.last_updated)
 }
 inline void SessionState::set_last_updated(const char* value) {
   
-  last_updated_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  last_updated_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_char:coprocess.SessionState.last_updated)
 }
-inline void SessionState::set_last_updated(const char* value, size_t size) {
+inline void SessionState::set_last_updated(const char* value,
+    size_t size) {
   
-  last_updated_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
+  last_updated_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_pointer:coprocess.SessionState.last_updated)
 }
 inline ::std::string* SessionState::mutable_last_updated() {
   
   // @@protoc_insertion_point(field_mutable:coprocess.SessionState.last_updated)
-  return last_updated_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return last_updated_.Mutable(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
 }
 inline ::std::string* SessionState::release_last_updated() {
   // @@protoc_insertion_point(field_release:coprocess.SessionState.last_updated)
   
-  return last_updated_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return last_updated_.Release(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
+}
+inline ::std::string* SessionState::unsafe_arena_release_last_updated() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:coprocess.SessionState.last_updated)
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  
+  return last_updated_.UnsafeArenaRelease(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      GetArenaNoVirtual());
 }
 inline void SessionState::set_allocated_last_updated(::std::string* last_updated) {
   if (last_updated != NULL) {
@@ -2101,8 +2522,21 @@ inline void SessionState::set_allocated_last_updated(::std::string* last_updated
   } else {
     
   }
-  last_updated_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), last_updated);
+  last_updated_.SetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), last_updated,
+      GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_allocated:coprocess.SessionState.last_updated)
+}
+inline void SessionState::unsafe_arena_set_allocated_last_updated(
+    ::std::string* last_updated) {
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  if (last_updated != NULL) {
+    
+  } else {
+    
+  }
+  last_updated_.UnsafeArenaSetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      last_updated, GetArenaNoVirtual());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:coprocess.SessionState.last_updated)
 }
 
 // optional int64 id_extractor_deadline = 27;

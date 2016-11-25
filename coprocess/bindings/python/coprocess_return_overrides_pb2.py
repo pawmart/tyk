@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='coprocess_return_overrides.proto',
   package='coprocess',
   syntax='proto3',
-  serialized_pb=_b('\n coprocess_return_overrides.proto\x12\tcoprocess\"@\n\x0fReturnOverrides\x12\x15\n\rresponse_code\x18\x01 \x01(\x05\x12\x16\n\x0eresponse_error\x18\x02 \x01(\tb\x06proto3')
+  serialized_pb=_b('\n coprocess_return_overrides.proto\x12\tcoprocess\"@\n\x0fReturnOverrides\x12\x15\n\rresponse_code\x18\x01 \x01(\x05\x12\x16\n\x0eresponse_error\x18\x02 \x01(\tB\x05H\x03\xf8\x01\x01\x62\x06proto3')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -73,4 +73,6 @@ ReturnOverrides = _reflection.GeneratedProtocolMessageType('ReturnOverrides', (_
 _sym_db.RegisterMessage(ReturnOverrides)
 
 
+DESCRIPTOR.has_options = True
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('H\003\370\001\001'))
 # @@protoc_insertion_point(module_scope)

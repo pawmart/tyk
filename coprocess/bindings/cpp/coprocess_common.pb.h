@@ -22,12 +22,10 @@
 #include <google/protobuf/arena.h>
 #include <google/protobuf/arenastring.h>
 #include <google/protobuf/generated_message_util.h>
-#include <google/protobuf/metadata.h>
-#include <google/protobuf/message.h>
+#include <google/protobuf/message_lite.h>
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
-#include <google/protobuf/generated_enum_reflection.h>
-#include <google/protobuf/unknown_field_set.h>
+#include <google/protobuf/generated_enum_util.h>
 // @@protoc_insertion_point(includes)
 
 namespace coprocess {
@@ -54,19 +52,9 @@ const HookType HookType_MIN = Unknown;
 const HookType HookType_MAX = CustomKeyCheck;
 const int HookType_ARRAYSIZE = HookType_MAX + 1;
 
-const ::google::protobuf::EnumDescriptor* HookType_descriptor();
-inline const ::std::string& HookType_Name(HookType value) {
-  return ::google::protobuf::internal::NameOfEnum(
-    HookType_descriptor(), value);
-}
-inline bool HookType_Parse(
-    const ::std::string& name, HookType* value) {
-  return ::google::protobuf::internal::ParseNamedEnum<HookType>(
-    HookType_descriptor(), name, value);
-}
 // ===================================================================
 
-class StringSlice : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:coprocess.StringSlice) */ {
+class StringSlice : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:coprocess.StringSlice) */ {
  public:
   StringSlice();
   virtual ~StringSlice();
@@ -78,11 +66,15 @@ class StringSlice : public ::google::protobuf::Message /* @@protoc_insertion_poi
     return *this;
   }
 
-  static const ::google::protobuf::Descriptor* descriptor();
+  inline ::google::protobuf::Arena* GetArena() const { return GetArenaNoVirtual(); }
+  inline void* GetMaybeArenaPointer() const {
+    return MaybeArenaPtr();
+  }
   static const StringSlice& default_instance();
 
   static const StringSlice* internal_default_instance();
 
+  void UnsafeArenaSwap(StringSlice* other);
   void Swap(StringSlice* other);
 
   // implements Message ----------------------------------------------
@@ -90,8 +82,7 @@ class StringSlice : public ::google::protobuf::Message /* @@protoc_insertion_poi
   inline StringSlice* New() const { return New(NULL); }
 
   StringSlice* New(::google::protobuf::Arena* arena) const;
-  void CopyFrom(const ::google::protobuf::Message& from);
-  void MergeFrom(const ::google::protobuf::Message& from);
+  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from);
   void CopyFrom(const StringSlice& from);
   void MergeFrom(const StringSlice& from);
   void Clear();
@@ -102,11 +93,7 @@ class StringSlice : public ::google::protobuf::Message /* @@protoc_insertion_poi
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
-      bool deterministic, ::google::protobuf::uint8* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
-    return InternalSerializeWithCachedSizesToArray(false, output);
-  }
+  void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
@@ -114,16 +101,21 @@ class StringSlice : public ::google::protobuf::Message /* @@protoc_insertion_poi
   void SetCachedSize(int size) const;
   void InternalSwap(StringSlice* other);
   void UnsafeMergeFrom(const StringSlice& from);
+  protected:
+  explicit StringSlice(::google::protobuf::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::google::protobuf::Arena* arena);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
-    return _internal_metadata_.arena();
+    return _arena_ptr_;
   }
-  inline void* MaybeArenaPtr() const {
-    return _internal_metadata_.raw_arena_ptr();
+  inline ::google::protobuf::Arena* MaybeArenaPtr() const {
+    return _arena_ptr_;
   }
   public:
 
-  ::google::protobuf::Metadata GetMetadata() const;
+  ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
 
@@ -148,7 +140,12 @@ class StringSlice : public ::google::protobuf::Message /* @@protoc_insertion_poi
   // @@protoc_insertion_point(class_scope:coprocess.StringSlice)
  private:
 
-  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr _unknown_fields_;
+  ::google::protobuf::Arena* _arena_ptr_;
+
+  friend class ::google::protobuf::Arena;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
   ::google::protobuf::RepeatedPtrField< ::std::string> items_;
   mutable int _cached_size_;
   friend void  protobuf_InitDefaults_coprocess_5fcommon_2eproto_impl();
@@ -237,10 +234,6 @@ namespace google {
 namespace protobuf {
 
 template <> struct is_proto_enum< ::coprocess::HookType> : ::google::protobuf::internal::true_type {};
-template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::coprocess::HookType>() {
-  return ::coprocess::HookType_descriptor();
-}
 
 }  // namespace protobuf
 }  // namespace google

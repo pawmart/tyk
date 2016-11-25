@@ -22,7 +22,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='coprocess_object.proto',
   package='coprocess',
   syntax='proto3',
-  serialized_pb=_b('\n\x16\x63oprocess_object.proto\x12\tcoprocess\x1a#coprocess_mini_request_object.proto\x1a\x1d\x63oprocess_session_state.proto\x1a\x16\x63oprocess_common.proto\"\xd8\x02\n\x06Object\x12&\n\thook_type\x18\x01 \x01(\x0e\x32\x13.coprocess.HookType\x12\x11\n\thook_name\x18\x02 \x01(\t\x12-\n\x07request\x18\x03 \x01(\x0b\x32\x1c.coprocess.MiniRequestObject\x12(\n\x07session\x18\x04 \x01(\x0b\x32\x17.coprocess.SessionState\x12\x31\n\x08metadata\x18\x05 \x03(\x0b\x32\x1f.coprocess.Object.MetadataEntry\x12)\n\x04spec\x18\x06 \x03(\x0b\x32\x1b.coprocess.Object.SpecEntry\x1a/\n\rMetadataEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x1a+\n\tSpecEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\x18\n\x05\x45vent\x12\x0f\n\x07payload\x18\x01 \x01(\t\"\x0c\n\nEventReply2|\n\nDispatcher\x12\x32\n\x08\x44ispatch\x12\x11.coprocess.Object\x1a\x11.coprocess.Object\"\x00\x12:\n\rDispatchEvent\x12\x10.coprocess.Event\x1a\x15.coprocess.EventReply\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\x16\x63oprocess_object.proto\x12\tcoprocess\x1a#coprocess_mini_request_object.proto\x1a\x1d\x63oprocess_session_state.proto\x1a\x16\x63oprocess_common.proto\"\xd8\x02\n\x06Object\x12&\n\thook_type\x18\x01 \x01(\x0e\x32\x13.coprocess.HookType\x12\x11\n\thook_name\x18\x02 \x01(\t\x12-\n\x07request\x18\x03 \x01(\x0b\x32\x1c.coprocess.MiniRequestObject\x12(\n\x07session\x18\x04 \x01(\x0b\x32\x17.coprocess.SessionState\x12\x31\n\x08metadata\x18\x05 \x03(\x0b\x32\x1f.coprocess.Object.MetadataEntry\x12)\n\x04spec\x18\x06 \x03(\x0b\x32\x1b.coprocess.Object.SpecEntry\x1a/\n\rMetadataEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x1a+\n\tSpecEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\x18\n\x05\x45vent\x12\x0f\n\x07payload\x18\x01 \x01(\t\"\x0c\n\nEventReply2|\n\nDispatcher\x12\x32\n\x08\x44ispatch\x12\x11.coprocess.Object\x1a\x11.coprocess.Object\"\x00\x12:\n\rDispatchEvent\x12\x10.coprocess.Event\x1a\x15.coprocess.EventReply\"\x00\x42\x05H\x03\xf8\x01\x01\x62\x06proto3')
   ,
   dependencies=[coprocess__mini__request__object__pb2.DESCRIPTOR,coprocess__session__state__pb2.DESCRIPTOR,coprocess__common__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -273,6 +273,8 @@ EventReply = _reflection.GeneratedProtocolMessageType('EventReply', (_message.Me
 _sym_db.RegisterMessage(EventReply)
 
 
+DESCRIPTOR.has_options = True
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('H\003\370\001\001'))
 _OBJECT_METADATAENTRY.has_options = True
 _OBJECT_METADATAENTRY._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001'))
 _OBJECT_SPECENTRY.has_options = True

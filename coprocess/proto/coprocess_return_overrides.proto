@@ -6,3 +6,6 @@ message ReturnOverrides {
   int32 response_code = 1;
   string response_error = 2;
 }
+
+option optimize_for = LITE_RUNTIME;
+option cc_enable_arenas = true;

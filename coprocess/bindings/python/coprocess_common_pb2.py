@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='coprocess_common.proto',
   package='coprocess',
   syntax='proto3',
-  serialized_pb=_b('\n\x16\x63oprocess_common.proto\x12\tcoprocess\"\x1c\n\x0bStringSlice\x12\r\n\x05items\x18\x01 \x03(\t*O\n\x08HookType\x12\x0b\n\x07Unknown\x10\x00\x12\x07\n\x03Pre\x10\x01\x12\x08\n\x04Post\x10\x02\x12\x0f\n\x0bPostKeyAuth\x10\x03\x12\x12\n\x0e\x43ustomKeyCheck\x10\x04\x62\x06proto3')
+  serialized_pb=_b('\n\x16\x63oprocess_common.proto\x12\tcoprocess\"\x1c\n\x0bStringSlice\x12\r\n\x05items\x18\x01 \x03(\t*O\n\x08HookType\x12\x0b\n\x07Unknown\x10\x00\x12\x07\n\x03Pre\x10\x01\x12\x08\n\x04Post\x10\x02\x12\x0f\n\x0bPostKeyAuth\x10\x03\x12\x12\n\x0e\x43ustomKeyCheck\x10\x04\x42\x05H\x03\xf8\x01\x01\x62\x06proto3')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -108,4 +108,6 @@ StringSlice = _reflection.GeneratedProtocolMessageType('StringSlice', (_message.
 _sym_db.RegisterMessage(StringSlice)
 
 
+DESCRIPTOR.has_options = True
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('H\003\370\001\001'))
 # @@protoc_insertion_point(module_scope)

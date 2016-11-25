@@ -11,68 +11,13 @@
 #include <google/protobuf/stubs/once.h>
 #include <google/protobuf/io/coded_stream.h>
 #include <google/protobuf/wire_format_lite_inl.h>
-#include <google/protobuf/descriptor.h>
-#include <google/protobuf/generated_message_reflection.h>
-#include <google/protobuf/reflection_ops.h>
-#include <google/protobuf/wire_format.h>
+#include <google/protobuf/io/zero_copy_stream_impl_lite.h>
 // @@protoc_insertion_point(includes)
 
 namespace coprocess {
 
-namespace {
-
-const ::google::protobuf::Descriptor* StringSlice_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  StringSlice_reflection_ = NULL;
-const ::google::protobuf::EnumDescriptor* HookType_descriptor_ = NULL;
-
-}  // namespace
-
-
-void protobuf_AssignDesc_coprocess_5fcommon_2eproto() GOOGLE_ATTRIBUTE_COLD;
-void protobuf_AssignDesc_coprocess_5fcommon_2eproto() {
-  protobuf_AddDesc_coprocess_5fcommon_2eproto();
-  const ::google::protobuf::FileDescriptor* file =
-    ::google::protobuf::DescriptorPool::generated_pool()->FindFileByName(
-      "coprocess_common.proto");
-  GOOGLE_CHECK(file != NULL);
-  StringSlice_descriptor_ = file->message_type(0);
-  static const int StringSlice_offsets_[1] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StringSlice, items_),
-  };
-  StringSlice_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      StringSlice_descriptor_,
-      StringSlice::internal_default_instance(),
-      StringSlice_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(StringSlice),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StringSlice, _internal_metadata_));
-  HookType_descriptor_ = file->enum_type(0);
-}
-
-namespace {
-
-GOOGLE_PROTOBUF_DECLARE_ONCE(protobuf_AssignDescriptors_once_);
-void protobuf_AssignDescriptorsOnce() {
-  ::google::protobuf::GoogleOnceInit(&protobuf_AssignDescriptors_once_,
-                 &protobuf_AssignDesc_coprocess_5fcommon_2eproto);
-}
-
-void protobuf_RegisterTypes(const ::std::string&) GOOGLE_ATTRIBUTE_COLD;
-void protobuf_RegisterTypes(const ::std::string&) {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      StringSlice_descriptor_, StringSlice::internal_default_instance());
-}
-
-}  // namespace
-
 void protobuf_ShutdownFile_coprocess_5fcommon_2eproto() {
   StringSlice_default_instance_.Shutdown();
-  delete StringSlice_reflection_;
 }
 
 void protobuf_InitDefaults_coprocess_5fcommon_2eproto_impl() {
@@ -92,13 +37,6 @@ void protobuf_AddDesc_coprocess_5fcommon_2eproto_impl() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   protobuf_InitDefaults_coprocess_5fcommon_2eproto();
-  ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\026coprocess_common.proto\022\tcoprocess\"\034\n\013S"
-    "tringSlice\022\r\n\005items\030\001 \003(\t*O\n\010HookType\022\013\n"
-    "\007Unknown\020\000\022\007\n\003Pre\020\001\022\010\n\004Post\020\002\022\017\n\013PostKey"
-    "Auth\020\003\022\022\n\016CustomKeyCheck\020\004b\006proto3", 154);
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
-    "coprocess_common.proto", &protobuf_RegisterTypes);
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_coprocess_5fcommon_2eproto);
 }
 
@@ -107,16 +45,14 @@ void protobuf_AddDesc_coprocess_5fcommon_2eproto() {
   ::google::protobuf::GoogleOnceInit(&protobuf_AddDesc_coprocess_5fcommon_2eproto_once_,
                  &protobuf_AddDesc_coprocess_5fcommon_2eproto_impl);
 }
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
 // Force AddDescriptors() to be called at static initialization time.
 struct StaticDescriptorInitializer_coprocess_5fcommon_2eproto {
   StaticDescriptorInitializer_coprocess_5fcommon_2eproto() {
     protobuf_AddDesc_coprocess_5fcommon_2eproto();
   }
 } static_descriptor_initializer_coprocess_5fcommon_2eproto_;
-const ::google::protobuf::EnumDescriptor* HookType_descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return HookType_descriptor_;
-}
+#endif  // GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
 bool HookType_IsValid(int value) {
   switch (value) {
     case 0:
@@ -148,18 +84,29 @@ const int StringSlice::kItemsFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 StringSlice::StringSlice()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  : ::google::protobuf::MessageLite(), _arena_ptr_(NULL) {
   if (this != internal_default_instance()) protobuf_InitDefaults_coprocess_5fcommon_2eproto();
   SharedCtor();
   // @@protoc_insertion_point(constructor:coprocess.StringSlice)
+}
+StringSlice::StringSlice(::google::protobuf::Arena* arena)
+  : ::google::protobuf::MessageLite(),
+  _arena_ptr_(arena),
+  items_(arena) {
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  protobuf_InitDefaults_coprocess_5fcommon_2eproto();
+#endif  // GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:coprocess.StringSlice)
 }
 
 void StringSlice::InitAsDefaultInstance() {
 }
 
 StringSlice::StringSlice(const StringSlice& from)
-  : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
+  : ::google::protobuf::MessageLite(),
+    _arena_ptr_(NULL) {
   SharedCtor();
   UnsafeMergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:coprocess.StringSlice)
@@ -175,18 +122,24 @@ StringSlice::~StringSlice() {
 }
 
 void StringSlice::SharedDtor() {
+  ::google::protobuf::Arena* arena = GetArenaNoVirtual();
+  if (arena != NULL) {
+    return;
+  }
+
 }
 
+void StringSlice::ArenaDtor(void* object) {
+  StringSlice* _this = reinterpret_cast< StringSlice* >(object);
+  (void)_this;
+}
+void StringSlice::RegisterArenaDtor(::google::protobuf::Arena* arena) {
+}
 void StringSlice::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
-const ::google::protobuf::Descriptor* StringSlice::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return StringSlice_descriptor_;
-}
-
 const StringSlice& StringSlice::default_instance() {
   protobuf_InitDefaults_coprocess_5fcommon_2eproto();
   return *internal_default_instance();
@@ -195,11 +148,7 @@ const StringSlice& StringSlice::default_instance() {
 ::google::protobuf::internal::ExplicitlyConstructed<StringSlice> StringSlice_default_instance_;
 
 StringSlice* StringSlice::New(::google::protobuf::Arena* arena) const {
-  StringSlice* n = new StringSlice;
-  if (arena != NULL) {
-    arena->Own(n);
-  }
-  return n;
+  return ::google::protobuf::Arena::CreateMessage<StringSlice>(arena);
 }
 
 void StringSlice::Clear() {
@@ -273,24 +222,6 @@ void StringSlice::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:coprocess.StringSlice)
 }
 
-::google::protobuf::uint8* StringSlice::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
-  // @@protoc_insertion_point(serialize_to_array_start:coprocess.StringSlice)
-  // repeated string items = 1;
-  for (int i = 0; i < this->items_size(); i++) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->items(i).data(), this->items(i).length(),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "coprocess.StringSlice.items");
-    target = ::google::protobuf::internal::WireFormatLite::
-      WriteStringToArray(1, this->items(i), target);
-  }
-
-  // @@protoc_insertion_point(serialize_to_array_end:coprocess.StringSlice)
-  return target;
-}
-
 size_t StringSlice::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:coprocess.StringSlice)
   size_t total_size = 0;
@@ -310,19 +241,9 @@ size_t StringSlice::ByteSizeLong() const {
   return total_size;
 }
 
-void StringSlice::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:coprocess.StringSlice)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const StringSlice* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const StringSlice>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:coprocess.StringSlice)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:coprocess.StringSlice)
-    UnsafeMergeFrom(*source);
-  }
+void StringSlice::CheckTypeAndMergeFrom(
+    const ::google::protobuf::MessageLite& from) {
+  MergeFrom(*::google::protobuf::down_cast<const StringSlice*>(&from));
 }
 
 void StringSlice::MergeFrom(const StringSlice& from) {
@@ -339,13 +260,6 @@ void StringSlice::UnsafeMergeFrom(const StringSlice& from) {
   items_.UnsafeMergeFrom(from.items_);
 }
 
-void StringSlice::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:coprocess.StringSlice)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
 void StringSlice::CopyFrom(const StringSlice& from) {
 // @@protoc_insertion_point(class_specific_copy_from_start:coprocess.StringSlice)
   if (&from == this) return;
@@ -360,20 +274,28 @@ bool StringSlice::IsInitialized() const {
 
 void StringSlice::Swap(StringSlice* other) {
   if (other == this) return;
+  if (GetArenaNoVirtual() == other->GetArenaNoVirtual()) {
+    InternalSwap(other);
+  } else {
+    StringSlice temp;
+    temp.UnsafeMergeFrom(*this);
+    CopyFrom(*other);
+    other->CopyFrom(temp);
+  }
+}
+void StringSlice::UnsafeArenaSwap(StringSlice* other) {
+  if (other == this) return;
+  GOOGLE_DCHECK(GetArenaNoVirtual() == other->GetArenaNoVirtual());
   InternalSwap(other);
 }
 void StringSlice::InternalSwap(StringSlice* other) {
   items_.UnsafeArenaSwap(&other->items_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
+  _unknown_fields_.Swap(&other->_unknown_fields_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
-::google::protobuf::Metadata StringSlice::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = StringSlice_descriptor_;
-  metadata.reflection = StringSlice_reflection_;
-  return metadata;
+::std::string StringSlice::GetTypeName() const {
+  return "coprocess.StringSlice";
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS

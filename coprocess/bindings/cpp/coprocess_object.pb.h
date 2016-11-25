@@ -22,13 +22,11 @@
 #include <google/protobuf/arena.h>
 #include <google/protobuf/arenastring.h>
 #include <google/protobuf/generated_message_util.h>
-#include <google/protobuf/metadata.h>
-#include <google/protobuf/message.h>
+#include <google/protobuf/message_lite.h>
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
 #include <google/protobuf/map.h>
-#include <google/protobuf/map_field_inl.h>
-#include <google/protobuf/unknown_field_set.h>
+#include <google/protobuf/map_field_lite.h>
 #include "coprocess_mini_request_object.pb.h"
 #include "coprocess_session_state.pb.h"
 #include "coprocess_common.pb.h"
@@ -48,7 +46,7 @@ class Object;
 
 // ===================================================================
 
-class Object : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:coprocess.Object) */ {
+class Object : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:coprocess.Object) */ {
  public:
   Object();
   virtual ~Object();
@@ -60,11 +58,15 @@ class Object : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
     return *this;
   }
 
-  static const ::google::protobuf::Descriptor* descriptor();
+  inline ::google::protobuf::Arena* GetArena() const { return GetArenaNoVirtual(); }
+  inline void* GetMaybeArenaPointer() const {
+    return MaybeArenaPtr();
+  }
   static const Object& default_instance();
 
   static const Object* internal_default_instance();
 
+  void UnsafeArenaSwap(Object* other);
   void Swap(Object* other);
 
   // implements Message ----------------------------------------------
@@ -72,8 +74,7 @@ class Object : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
   inline Object* New() const { return New(NULL); }
 
   Object* New(::google::protobuf::Arena* arena) const;
-  void CopyFrom(const ::google::protobuf::Message& from);
-  void MergeFrom(const ::google::protobuf::Message& from);
+  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from);
   void CopyFrom(const Object& from);
   void MergeFrom(const Object& from);
   void Clear();
@@ -84,11 +85,7 @@ class Object : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
-      bool deterministic, ::google::protobuf::uint8* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
-    return InternalSerializeWithCachedSizesToArray(false, output);
-  }
+  void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
@@ -96,16 +93,21 @@ class Object : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
   void SetCachedSize(int size) const;
   void InternalSwap(Object* other);
   void UnsafeMergeFrom(const Object& from);
+  protected:
+  explicit Object(::google::protobuf::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::google::protobuf::Arena* arena);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
-    return _internal_metadata_.arena();
+    return _arena_ptr_;
   }
-  inline void* MaybeArenaPtr() const {
-    return _internal_metadata_.raw_arena_ptr();
+  inline ::google::protobuf::Arena* MaybeArenaPtr() const {
+    return _arena_ptr_;
   }
   public:
 
-  ::google::protobuf::Metadata GetMetadata() const;
+  ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
 
@@ -128,24 +130,45 @@ class Object : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
   ::std::string* mutable_hook_name();
   ::std::string* release_hook_name();
   void set_allocated_hook_name(::std::string* hook_name);
+  ::std::string* unsafe_arena_release_hook_name();
+  void unsafe_arena_set_allocated_hook_name(
+      ::std::string* hook_name);
 
   // optional .coprocess.MiniRequestObject request = 3;
   bool has_request() const;
   void clear_request();
   static const int kRequestFieldNumber = 3;
+  private:
+  void _slow_mutable_request();
+  void _slow_set_allocated_request(
+      ::google::protobuf::Arena* message_arena, ::coprocess::MiniRequestObject** request);
+  ::coprocess::MiniRequestObject* _slow_release_request();
+  public:
   const ::coprocess::MiniRequestObject& request() const;
   ::coprocess::MiniRequestObject* mutable_request();
   ::coprocess::MiniRequestObject* release_request();
   void set_allocated_request(::coprocess::MiniRequestObject* request);
+  ::coprocess::MiniRequestObject* unsafe_arena_release_request();
+  void unsafe_arena_set_allocated_request(
+      ::coprocess::MiniRequestObject* request);
 
   // optional .coprocess.SessionState session = 4;
   bool has_session() const;
   void clear_session();
   static const int kSessionFieldNumber = 4;
+  private:
+  void _slow_mutable_session();
+  void _slow_set_allocated_session(
+      ::google::protobuf::Arena* message_arena, ::coprocess::SessionState** session);
+  ::coprocess::SessionState* _slow_release_session();
+  public:
   const ::coprocess::SessionState& session() const;
   ::coprocess::SessionState* mutable_session();
   ::coprocess::SessionState* release_session();
   void set_allocated_session(::coprocess::SessionState* session);
+  ::coprocess::SessionState* unsafe_arena_release_session();
+  void unsafe_arena_set_allocated_session(
+      ::coprocess::SessionState* session);
 
   // map<string, string> metadata = 5;
   int metadata_size() const;
@@ -168,14 +191,19 @@ class Object : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
   // @@protoc_insertion_point(class_scope:coprocess.Object)
  private:
 
-  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr _unknown_fields_;
+  ::google::protobuf::Arena* _arena_ptr_;
+
+  friend class ::google::protobuf::Arena;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
   typedef ::google::protobuf::internal::MapEntryLite<
       ::std::string, ::std::string,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
       0 >
       Object_MetadataEntry;
-  ::google::protobuf::internal::MapField<
+  ::google::protobuf::internal::MapFieldLite<
       ::std::string, ::std::string,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
@@ -186,7 +214,7 @@ class Object : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
       0 >
       Object_SpecEntry;
-  ::google::protobuf::internal::MapField<
+  ::google::protobuf::internal::MapFieldLite<
       ::std::string, ::std::string,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
@@ -207,7 +235,7 @@ extern ::google::protobuf::internal::ExplicitlyConstructed<Object> Object_defaul
 
 // -------------------------------------------------------------------
 
-class Event : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:coprocess.Event) */ {
+class Event : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:coprocess.Event) */ {
  public:
   Event();
   virtual ~Event();
@@ -219,11 +247,15 @@ class Event : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
     return *this;
   }
 
-  static const ::google::protobuf::Descriptor* descriptor();
+  inline ::google::protobuf::Arena* GetArena() const { return GetArenaNoVirtual(); }
+  inline void* GetMaybeArenaPointer() const {
+    return MaybeArenaPtr();
+  }
   static const Event& default_instance();
 
   static const Event* internal_default_instance();
 
+  void UnsafeArenaSwap(Event* other);
   void Swap(Event* other);
 
   // implements Message ----------------------------------------------
@@ -231,8 +263,7 @@ class Event : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
   inline Event* New() const { return New(NULL); }
 
   Event* New(::google::protobuf::Arena* arena) const;
-  void CopyFrom(const ::google::protobuf::Message& from);
-  void MergeFrom(const ::google::protobuf::Message& from);
+  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from);
   void CopyFrom(const Event& from);
   void MergeFrom(const Event& from);
   void Clear();
@@ -243,11 +274,7 @@ class Event : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
-      bool deterministic, ::google::protobuf::uint8* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
-    return InternalSerializeWithCachedSizesToArray(false, output);
-  }
+  void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
@@ -255,16 +282,21 @@ class Event : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
   void SetCachedSize(int size) const;
   void InternalSwap(Event* other);
   void UnsafeMergeFrom(const Event& from);
+  protected:
+  explicit Event(::google::protobuf::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::google::protobuf::Arena* arena);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
-    return _internal_metadata_.arena();
+    return _arena_ptr_;
   }
-  inline void* MaybeArenaPtr() const {
-    return _internal_metadata_.raw_arena_ptr();
+  inline ::google::protobuf::Arena* MaybeArenaPtr() const {
+    return _arena_ptr_;
   }
   public:
 
-  ::google::protobuf::Metadata GetMetadata() const;
+  ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
 
@@ -280,11 +312,19 @@ class Event : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
   ::std::string* mutable_payload();
   ::std::string* release_payload();
   void set_allocated_payload(::std::string* payload);
+  ::std::string* unsafe_arena_release_payload();
+  void unsafe_arena_set_allocated_payload(
+      ::std::string* payload);
 
   // @@protoc_insertion_point(class_scope:coprocess.Event)
  private:
 
-  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr _unknown_fields_;
+  ::google::protobuf::Arena* _arena_ptr_;
+
+  friend class ::google::protobuf::Arena;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
   ::google::protobuf::internal::ArenaStringPtr payload_;
   mutable int _cached_size_;
   friend void  protobuf_InitDefaults_coprocess_5fobject_2eproto_impl();
@@ -298,7 +338,7 @@ extern ::google::protobuf::internal::ExplicitlyConstructed<Event> Event_default_
 
 // -------------------------------------------------------------------
 
-class EventReply : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:coprocess.EventReply) */ {
+class EventReply : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:coprocess.EventReply) */ {
  public:
   EventReply();
   virtual ~EventReply();
@@ -310,11 +350,15 @@ class EventReply : public ::google::protobuf::Message /* @@protoc_insertion_poin
     return *this;
   }
 
-  static const ::google::protobuf::Descriptor* descriptor();
+  inline ::google::protobuf::Arena* GetArena() const { return GetArenaNoVirtual(); }
+  inline void* GetMaybeArenaPointer() const {
+    return MaybeArenaPtr();
+  }
   static const EventReply& default_instance();
 
   static const EventReply* internal_default_instance();
 
+  void UnsafeArenaSwap(EventReply* other);
   void Swap(EventReply* other);
 
   // implements Message ----------------------------------------------
@@ -322,8 +366,7 @@ class EventReply : public ::google::protobuf::Message /* @@protoc_insertion_poin
   inline EventReply* New() const { return New(NULL); }
 
   EventReply* New(::google::protobuf::Arena* arena) const;
-  void CopyFrom(const ::google::protobuf::Message& from);
-  void MergeFrom(const ::google::protobuf::Message& from);
+  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from);
   void CopyFrom(const EventReply& from);
   void MergeFrom(const EventReply& from);
   void Clear();
@@ -334,11 +377,7 @@ class EventReply : public ::google::protobuf::Message /* @@protoc_insertion_poin
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
-      bool deterministic, ::google::protobuf::uint8* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
-    return InternalSerializeWithCachedSizesToArray(false, output);
-  }
+  void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
@@ -346,16 +385,21 @@ class EventReply : public ::google::protobuf::Message /* @@protoc_insertion_poin
   void SetCachedSize(int size) const;
   void InternalSwap(EventReply* other);
   void UnsafeMergeFrom(const EventReply& from);
+  protected:
+  explicit EventReply(::google::protobuf::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::google::protobuf::Arena* arena);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
-    return _internal_metadata_.arena();
+    return _arena_ptr_;
   }
-  inline void* MaybeArenaPtr() const {
-    return _internal_metadata_.raw_arena_ptr();
+  inline ::google::protobuf::Arena* MaybeArenaPtr() const {
+    return _arena_ptr_;
   }
   public:
 
-  ::google::protobuf::Metadata GetMetadata() const;
+  ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
 
@@ -364,7 +408,12 @@ class EventReply : public ::google::protobuf::Message /* @@protoc_insertion_poin
   // @@protoc_insertion_point(class_scope:coprocess.EventReply)
  private:
 
-  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr _unknown_fields_;
+  ::google::protobuf::Arena* _arena_ptr_;
+
+  friend class ::google::protobuf::Arena;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
   mutable int _cached_size_;
   friend void  protobuf_InitDefaults_coprocess_5fobject_2eproto_impl();
   friend void  protobuf_AddDesc_coprocess_5fobject_2eproto_impl();
@@ -399,37 +448,46 @@ inline void Object::set_hook_type(::coprocess::HookType value) {
 
 // optional string hook_name = 2;
 inline void Object::clear_hook_name() {
-  hook_name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  hook_name_.ClearToEmpty(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
 }
 inline const ::std::string& Object::hook_name() const {
   // @@protoc_insertion_point(field_get:coprocess.Object.hook_name)
-  return hook_name_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return hook_name_.Get(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void Object::set_hook_name(const ::std::string& value) {
   
-  hook_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  hook_name_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value, GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set:coprocess.Object.hook_name)
 }
 inline void Object::set_hook_name(const char* value) {
   
-  hook_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  hook_name_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_char:coprocess.Object.hook_name)
 }
-inline void Object::set_hook_name(const char* value, size_t size) {
+inline void Object::set_hook_name(const char* value,
+    size_t size) {
   
-  hook_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
+  hook_name_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_pointer:coprocess.Object.hook_name)
 }
 inline ::std::string* Object::mutable_hook_name() {
   
   // @@protoc_insertion_point(field_mutable:coprocess.Object.hook_name)
-  return hook_name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return hook_name_.Mutable(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
 }
 inline ::std::string* Object::release_hook_name() {
   // @@protoc_insertion_point(field_release:coprocess.Object.hook_name)
   
-  return hook_name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return hook_name_.Release(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
+}
+inline ::std::string* Object::unsafe_arena_release_hook_name() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:coprocess.Object.hook_name)
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  
+  return hook_name_.UnsafeArenaRelease(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      GetArenaNoVirtual());
 }
 inline void Object::set_allocated_hook_name(::std::string* hook_name) {
   if (hook_name != NULL) {
@@ -437,8 +495,21 @@ inline void Object::set_allocated_hook_name(::std::string* hook_name) {
   } else {
     
   }
-  hook_name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), hook_name);
+  hook_name_.SetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), hook_name,
+      GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_allocated:coprocess.Object.hook_name)
+}
+inline void Object::unsafe_arena_set_allocated_hook_name(
+    ::std::string* hook_name) {
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  if (hook_name != NULL) {
+    
+  } else {
+    
+  }
+  hook_name_.UnsafeArenaSetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      hook_name, GetArenaNoVirtual());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:coprocess.Object.hook_name)
 }
 
 // optional .coprocess.MiniRequestObject request = 3;
@@ -457,7 +528,7 @@ inline const ::coprocess::MiniRequestObject& Object::request() const {
 inline ::coprocess::MiniRequestObject* Object::mutable_request() {
   
   if (request_ == NULL) {
-    request_ = new ::coprocess::MiniRequestObject;
+    _slow_mutable_request();
   }
   // @@protoc_insertion_point(field_mutable:coprocess.Object.request)
   return request_;
@@ -465,12 +536,22 @@ inline ::coprocess::MiniRequestObject* Object::mutable_request() {
 inline ::coprocess::MiniRequestObject* Object::release_request() {
   // @@protoc_insertion_point(field_release:coprocess.Object.request)
   
-  ::coprocess::MiniRequestObject* temp = request_;
-  request_ = NULL;
-  return temp;
+  if (GetArenaNoVirtual() != NULL) {
+    return _slow_release_request();
+  } else {
+    ::coprocess::MiniRequestObject* temp = request_;
+    request_ = NULL;
+    return temp;
+  }
 }
-inline void Object::set_allocated_request(::coprocess::MiniRequestObject* request) {
-  delete request_;
+inline  void Object::set_allocated_request(::coprocess::MiniRequestObject* request) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
+    delete request_;
+  }
+  if (request != NULL) {
+    _slow_set_allocated_request(message_arena, &request);
+  }
   request_ = request;
   if (request) {
     
@@ -496,7 +577,7 @@ inline const ::coprocess::SessionState& Object::session() const {
 inline ::coprocess::SessionState* Object::mutable_session() {
   
   if (session_ == NULL) {
-    session_ = new ::coprocess::SessionState;
+    _slow_mutable_session();
   }
   // @@protoc_insertion_point(field_mutable:coprocess.Object.session)
   return session_;
@@ -504,12 +585,22 @@ inline ::coprocess::SessionState* Object::mutable_session() {
 inline ::coprocess::SessionState* Object::release_session() {
   // @@protoc_insertion_point(field_release:coprocess.Object.session)
   
-  ::coprocess::SessionState* temp = session_;
-  session_ = NULL;
-  return temp;
+  if (GetArenaNoVirtual() != NULL) {
+    return _slow_release_session();
+  } else {
+    ::coprocess::SessionState* temp = session_;
+    session_ = NULL;
+    return temp;
+  }
 }
-inline void Object::set_allocated_session(::coprocess::SessionState* session) {
-  delete session_;
+inline  void Object::set_allocated_session(::coprocess::SessionState* session) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
+    delete session_;
+  }
+  if (session != NULL) {
+    _slow_set_allocated_session(message_arena, &session);
+  }
   session_ = session;
   if (session) {
     
@@ -564,37 +655,46 @@ inline const Object* Object::internal_default_instance() {
 
 // optional string payload = 1;
 inline void Event::clear_payload() {
-  payload_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  payload_.ClearToEmpty(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
 }
 inline const ::std::string& Event::payload() const {
   // @@protoc_insertion_point(field_get:coprocess.Event.payload)
-  return payload_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return payload_.Get(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void Event::set_payload(const ::std::string& value) {
   
-  payload_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  payload_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value, GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set:coprocess.Event.payload)
 }
 inline void Event::set_payload(const char* value) {
   
-  payload_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  payload_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_char:coprocess.Event.payload)
 }
-inline void Event::set_payload(const char* value, size_t size) {
+inline void Event::set_payload(const char* value,
+    size_t size) {
   
-  payload_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
+  payload_.Set(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_pointer:coprocess.Event.payload)
 }
 inline ::std::string* Event::mutable_payload() {
   
   // @@protoc_insertion_point(field_mutable:coprocess.Event.payload)
-  return payload_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return payload_.Mutable(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
 }
 inline ::std::string* Event::release_payload() {
   // @@protoc_insertion_point(field_release:coprocess.Event.payload)
   
-  return payload_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return payload_.Release(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), GetArenaNoVirtual());
+}
+inline ::std::string* Event::unsafe_arena_release_payload() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:coprocess.Event.payload)
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  
+  return payload_.UnsafeArenaRelease(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      GetArenaNoVirtual());
 }
 inline void Event::set_allocated_payload(::std::string* payload) {
   if (payload != NULL) {
@@ -602,8 +702,21 @@ inline void Event::set_allocated_payload(::std::string* payload) {
   } else {
     
   }
-  payload_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), payload);
+  payload_.SetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), payload,
+      GetArenaNoVirtual());
   // @@protoc_insertion_point(field_set_allocated:coprocess.Event.payload)
+}
+inline void Event::unsafe_arena_set_allocated_payload(
+    ::std::string* payload) {
+  GOOGLE_DCHECK(GetArenaNoVirtual() != NULL);
+  if (payload != NULL) {
+    
+  } else {
+    
+  }
+  payload_.UnsafeArenaSetAllocated(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      payload, GetArenaNoVirtual());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:coprocess.Event.payload)
 }
 
 inline const Event* Event::internal_default_instance() {

@@ -17,3 +17,6 @@ message MiniRequestObject {
   repeated string delete_params = 9;
   ReturnOverrides return_overrides = 10;
 }
+
+option optimize_for = LITE_RUNTIME;
+option cc_enable_arenas = true;

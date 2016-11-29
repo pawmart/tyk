@@ -32,6 +32,7 @@ void protobuf_InitDefaults_coprocess_5fobject_2eproto_impl() {
   Object_default_instance_.DefaultConstruct();
   ::google::protobuf::internal::GetEmptyString();
   ::google::protobuf::internal::GetEmptyString();
+  ::google::protobuf::internal::GetEmptyString();
   Event_default_instance_.DefaultConstruct();
   EventReply_default_instance_.DefaultConstruct();
   Object_default_instance_.get_mutable()->InitAsDefaultInstance();

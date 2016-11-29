@@ -2,8 +2,12 @@
 echo Set version number
 export VERSION=$(perl -n -e'/v(\d+).(\d+).(\d+).(\d+)/'' && print "v$1\.$2\.$3\.$4"' version.go)
 
+echo Generating key
+[[ $(gpg --list-keys | grep -w 729EA673) ]] && echo "Key exists" || gpg --import build_key.key
+
 echo Prepare the release directories
 export SOURCEBIN=tyk
+export CLIBIN=tyk-cli
 export SOURCEBINPATH=/src/github.com/TykTechnologies/tyk
 export i386BINDIR=$SOURCEBINPATH/build/i386/tyk.linux.i386-$VERSION
 export amd64BINDIR=$SOURCEBINPATH/build/amd64/tyk.linux.amd64-$VERSION
@@ -12,7 +16,36 @@ export armBINDIR=$SOURCEBINPATH/build/arm/tyk.linux.arm64-$VERSION
 export i386TGZDIR=$SOURCEBINPATH/build/i386/tgz/tyk.linux.i386-$VERSION
 export amd64TGZDIR=$SOURCEBINPATH/build/amd64/tgz/tyk.linux.amd64-$VERSION
 export armTGZDIR=$SOURCEBINPATH/build/arm/tgz/tyk.linux.arm64-$VERSION
-export PACKAGECLOUDREPO=tyk-gateway-auto
+export PACKAGECLOUDREPO=tyk-gateway
+
+orgDir=/src/github.com/TykTechnologies
+cliDIR=/src/github.com/TykTechnologies/tyk-cli
+cliTmpDir=$SOURCEBINPATH/temp/cli
+
+echo "Clearing CLI temp folder"
+rm -rf $cliTmpDir
+mkdir -p $cliTmpDir
+
+echo "Preparing CLI Build"
+cd $orgDir
+git clone https://github.com/TykTechnologies/tyk-cli.git
+cd $cliDIR
+git checkout master
+go get -v ./...
+gox -osarch="linux/arm64 linux/amd64 linux/386"
+
+echo "Copying CLI Build files"
+cp tyk-cli_linux_386 $cliTmpDir/
+cp tyk-cli_linux_amd64 $cliTmpDir/
+cp tyk-cli_linux_arm64 $cliTmpDir/
+
+echo "Cleaning up"
+rm tyk-cli_linux_386
+rm tyk-cli_linux_amd64
+rm tyk-cli_linux_arm64
+
+echo "Retuning to Tyk build"
+cd $SOURCEBINPATH
 
 echo Starting Tyk build
 cd $SOURCEBINPATH
@@ -68,6 +101,10 @@ cp tyk_linux_arm64 $armTGZDIR/$SOURCEBIN
 cp tyk_linux_amd64 $amd64TGZDIR/$SOURCEBIN
 cp $CPBINNAME_LUA $amd64TGZDIR/$SOURCEBIN-lua
 cp $CPBINNAME_PYTHON $amd64TGZDIR/$SOURCEBIN-python
+
+cp $cliTmpDir/tyk-cli_linux_386 $i386TGZDIR/utils/$CLIBIN
+cp $cliTmpDir/tyk-cli_linux_amd64 $amd64TGZDIR/utils/$CLIBIN
+cp $cliTmpDir/tyk-cli_linux_arm64 $armTGZDIR/utils/$CLIBIN
 
 echo Compressing
 cd $i386TGZDIR/../

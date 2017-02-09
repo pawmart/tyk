@@ -4,8 +4,6 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/TykTechnologies/logrus"
-	"github.com/lonelycode/gorpc"
 	"gopkg.in/vmihailenco/msgpack.v2"
 )
 
@@ -20,14 +18,6 @@ type Purger interface {
 // in the Config object
 type RPCPurger struct {
 	Store     *RedisClusterStorageManager
-	RPCClient *gorpc.Client
-	Client    *gorpc.DispatcherClient
-	Address   string
-}
-
-func (r *RPCPurger) ReConnect() {
-	r.RPCClient.Stop()
-	r.Connect()
 }
 
 // Connect Connects to RPC
@@ -36,23 +26,10 @@ func (r *RPCPurger) Connect() {
 		if RPCCLientSingleton != nil {
 			if RPCFuncClientSingleton != nil {
 				log.Info("RPC Analytics client using singleton")
-				r.RPCClient = RPCCLientSingleton
-				r.Client = RPCFuncClientSingleton
 				return
 			}
 		}
 	}
-
-	log.Info("Connecting to RPC Analytics service")
-	r.RPCClient = gorpc.NewTCPClient(r.Address)
-
-	if log.Level != logrus.DebugLevel {
-		gorpc.SetErrorLogger(gorpc.NilErrorLogger)
-	}
-
-	r.RPCClient.Start()
-	d := GetDispatcher()
-	r.Client = d.NewFuncClient(r.RPCClient)
 
 	return
 }
@@ -92,9 +69,8 @@ func (r *RPCPurger) PurgeCache() {
 		}
 
 		// Send keys to RPC
-		if _, err := r.Client.Call("PurgeAnalyticsData", string(data)); err != nil {
-			log.Error("Failed to call purge (reconnecting): ", err)
-			r.ReConnect()
+		if _, err := RPCFuncClientSingleton.Call("PurgeAnalyticsData", string(data)); err != nil {
+			log.Error("Failed to call purge: ", err)
 		}
 	}
 
